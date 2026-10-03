@@ -10,8 +10,9 @@ Dự án thực hành môn **Lập trình Thiết bị Di động** - Xây dựn
 ---
 
 ## 📑 Báo Cáo & Tài Liệu Kèm Theo
-- 📄 **Báo cáo giải trình chuyên sâu kiến trúc Cashew**: [Bao_Cao_Giai_Trinh_Kien_Truc_Cashew.md](Bao_Cao_Giai_Trinh_Kien_Truc_Cashew.md)
-- 📘 **Báo cáo thuyết minh đồ án tổng hợp (5 Bước hoàn chỉnh)**: [TH1.docx](TH1.docx)
+- 📘 **Báo cáo giải trình chuyên sâu kiến trúc Cashew (Word .docx)**: [Bao_Cao_Giai_Trinh_Kien_Truc_Cashew.docx](Bao_Cao_Giai_Trinh_Kien_Truc_Cashew.docx)
+- 📄 **Báo cáo giải trình chuyên sâu kiến trúc Cashew (Markdown .md)**: [Bao_Cao_Giai_Trinh_Kien_Truc_Cashew.md](Bao_Cao_Giai_Trinh_Kien_Truc_Cashew.md)
+- 📘 **Báo cáo thuyết minh đồ án tổng hợp (5 Bước hoàn chỉnh Word .docx)**: [TH1.docx](TH1.docx)
 - 📊 **Phân tích yêu cầu & Thiết kế DFD**: [Buoc1_Phan_Tich_Yeu_Cau_Va_Thiet_Ke_DFD.md](Buoc1_Phan_Tich_Yeu_Cau_Va_Thiet_Ke_DFD.md)
 
 ---
