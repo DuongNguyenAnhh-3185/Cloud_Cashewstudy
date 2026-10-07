@@ -10,6 +10,7 @@ Dự án thực hành môn **Lập trình Thiết bị Di động** - Xây dựn
 ---
 
 ## 📑 Báo Cáo & Tài Liệu Kèm Theo
+- ☁️ **Báo cáo phân tích hệ thống & Lập phương án tích hợp Cloud (Word .docx)**: [phan_tich_va_lap_phuong_an.docx](phan_tich_va_lap_phuong_an.docx)
 - 📘 **Báo cáo giải trình chuyên sâu kiến trúc Cashew (Word .docx)**: [Bao_Cao_Giai_Trinh_Kien_Truc_Cashew.docx](Bao_Cao_Giai_Trinh_Kien_Truc_Cashew.docx)
 - 📄 **Báo cáo giải trình chuyên sâu kiến trúc Cashew (Markdown .md)**: [Bao_Cao_Giai_Trinh_Kien_Truc_Cashew.md](Bao_Cao_Giai_Trinh_Kien_Truc_Cashew.md)
 - 📘 **Báo cáo thuyết minh đồ án tổng hợp (5 Bước hoàn chỉnh Word .docx)**: [TH1.docx](TH1.docx)
