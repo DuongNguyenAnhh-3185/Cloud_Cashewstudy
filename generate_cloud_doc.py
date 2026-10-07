@@ -2,7 +2,7 @@
 """
 Script tạo tài liệu Word hoàn chỉnh:
 BÁO CÁO PHÂN TÍCH HỆ THỐNG VÀ LẬP PHƯƠNG ÁN CHUYỂN ĐỔI, TÍCH HỢP ĐIỆN TOÁN ĐÁM MÂY (CLOUD)
-CHO ỨNG DỤNG QUẢN LÝ TÀI LIỆU (DOCUMENT MANAGEMENT SYSTEM)
+DỰA TRÊN ỨNG DỤNG BÀI THỰC HÀNH 1 - QUẢN LÝ TÀI LIỆU HỌC TẬP (CashewDoc)
 Tên tệp xuất: phan_tich_va_lap_phuong_an.docx
 """
 
@@ -35,120 +35,120 @@ DOCX_OUT = os.path.join(WORKSPACE_DIR, "phan_tich_va_lap_phuong_an.docx")
 # ==============================================================================
 
 def generate_traditional_vs_cloud_arch_diagram():
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13, 7), dpi=300)
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13.5, 7.2), dpi=300)
     fig.patch.set_facecolor('#F8FAFC')
 
-    # BÊN TRÁI: KIẾN TRÚC TRUYỀN THỐNG (ON-PREMISE / CLIENT-CENTRIC)
+    # BÊN TRÁI: KIẾN TRÚC HIỆN TẠI CỦA BÀI THỰC HÀNH (LOCAL / CLIENT-CENTRIC CASHEWDOC)
     ax1.set_xlim(0, 100)
     ax1.set_ylim(0, 100)
     ax1.axis('off')
     ax1.set_facecolor('#F8FAFC')
-    ax1.text(50, 96, "MÔ HÌNH TRUYỀN THỐNG (ON-PREMISE)", ha='center', fontsize=11, fontweight='bold', color='#991B1B')
-    ax1.text(50, 92, "(Cục bộ / Giới hạn mở rộng / Nghẽn băng thông)", ha='center', fontsize=8.5, color='#7F1D1D', style='italic')
+    ax1.text(50, 96, "MÔ HÌNH HIỆN TẠI (BÀI THỰC HÀNH 1 - LOCAL CASHEWDOC)", ha='center', fontsize=10.5, fontweight='bold', color='#991B1B')
+    ax1.text(50, 92, "(Cục bộ trên thiết bị di động / SQLite FFI / Local Storage)", ha='center', fontsize=8.5, color='#7F1D1D', style='italic')
 
     # Frontend
-    b_fe1 = patches.FancyBboxPatch((10, 74), 80, 14, boxstyle="round,pad=0.8,rounding_size=2",
+    b_fe1 = patches.FancyBboxPatch((10, 72), 80, 16, boxstyle="round,pad=0.8,rounding_size=2",
                                   facecolor="#DBEAFE", edgecolor="#1D4ED8", linewidth=1.8)
     ax1.add_patch(b_fe1)
-    ax1.text(50, 83, "CLIENT / FRONTEND", ha='center', va='center', fontsize=10, fontweight='bold', color="#1E3A8A")
-    ax1.text(50, 77.5, "Mobile App (Flutter) / Web Browser", ha='center', va='center', fontsize=8.5, color="#2563EB")
+    ax1.text(50, 83, "FRONTEND: FLUTTER MOBILE APP", ha='center', va='center', fontsize=10, fontweight='bold', color="#1E3A8A")
+    ax1.text(50, 77.5, "HomeScreen, DetailScreen, DocumentCard, FilePicker", ha='center', va='center', fontsize=8.5, color="#2563EB")
+    ax1.text(50, 74, "DocumentController (ChangeNotifier + Reactive Streams)", ha='center', va='center', fontsize=7.5, color="#1D4ED8")
 
-    # Backend
-    b_be1 = patches.FancyBboxPatch((10, 48), 80, 16, boxstyle="round,pad=0.8,rounding_size=2",
-                                  facecolor="#FEE2E2", edgecolor="#DC2626", linewidth=2)
+    # Service Logic
+    b_be1 = patches.FancyBboxPatch((10, 46), 80, 18, boxstyle="round,pad=0.8,rounding_size=2",
+                                  facecolor="#FEF3C7", edgecolor="#D97706", linewidth=2)
     ax1.add_patch(b_be1)
-    ax1.text(50, 59, "ON-PREMISE BACKEND SERVER", ha='center', va='center', fontsize=10, fontweight='bold', color="#991B1B")
-    ax1.text(50, 53, "API Server (Node/Spring) + Service Logic", ha='center', va='center', fontsize=8.5, color="#B91C1C")
-    ax1.text(50, 49.5, "⚠️ ĐIỂM NGHẼN: Chịu tải cả Metadata + File nhị phân", ha='center', va='center', fontsize=7.5, fontweight='bold', color="#7F1D1D")
+    ax1.text(50, 58, "APPLICATION LOGIC (SERVICE LAYER)", ha='center', va='center', fontsize=10, fontweight='bold', color="#92400E")
+    ax1.text(50, 52.5, "DocumentService, SubjectService, SearchService", ha='center', va='center', fontsize=8.5, color="#B45309")
+    ax1.text(50, 48.5, "Validation, UUID v4 (UuidHelper), Soft-Delete State Machine", ha='center', va='center', fontsize=7.5, color="#78350F")
 
     # Database & Storage
-    b_db1 = patches.FancyBboxPatch((10, 22), 37, 16, boxstyle="round,pad=0.8,rounding_size=2",
-                                  facecolor="#FEF3C7", edgecolor="#D97706", linewidth=1.8)
+    b_db1 = patches.FancyBboxPatch((10, 20), 38, 18, boxstyle="round,pad=0.8,rounding_size=2",
+                                  facecolor="#E0E7FF", edgecolor="#4338CA", linewidth=1.8)
     ax1.add_patch(b_db1)
-    ax1.text(28.5, 32, "LOCAL DATABASE", ha='center', va='center', fontsize=9, fontweight='bold', color="#92400E")
-    ax1.text(28.5, 26, "SQLite / MySQL Cục bộ\n(Giới hạn dung lượng)", ha='center', va='center', fontsize=7.5, color="#B45309")
+    ax1.text(29, 31, "CSDL SQLITE CỤC BỘ", ha='center', va='center', fontsize=9, fontweight='bold', color="#3730A3")
+    ax1.text(29, 25, "AppDatabase (sqflite)\nBảng: documents, subjects,\nattachments, delete_logs", ha='center', va='center', fontsize=7.5, color="#4338CA")
 
-    b_st1 = patches.FancyBboxPatch((53, 22), 37, 16, boxstyle="round,pad=0.8,rounding_size=2",
-                                  facecolor="#FEE2E2", edgecolor="#B91C1C", linewidth=1.8)
+    b_st1 = patches.FancyBboxPatch((52, 20), 38, 18, boxstyle="round,pad=0.8,rounding_size=2",
+                                  facecolor="#FEE2E2", edgecolor="#DC2626", linewidth=1.8)
     ax1.add_patch(b_st1)
-    ax1.text(71.5, 32, "LOCAL FILE STORAGE", ha='center', va='center', fontsize=9, fontweight='bold', color="#991B1B")
-    ax1.text(71.5, 26, "Ổ cứng đĩa vật lý / NAS\n(Nguy cơ hỏng hóc/Disk Full)", ha='center', va='center', fontsize=7.5, color="#7F1D1D")
+    ax1.text(71, 31, "BỘ NHỚ MÁY (LOCAL)", ha='center', va='center', fontsize=9, fontweight='bold', color="#991B1B")
+    ax1.text(71, 25, "Android Internal App Sandbox\nLưu tệp .pdf, .docx, .pptx\n(Đầy bộ nhớ / Dễ mất khi gỡ app)", ha='center', va='center', fontsize=7.5, color="#7F1D1D")
 
     # Risk box
     b_risk = patches.FancyBboxPatch((10, 3), 80, 13, boxstyle="round,pad=0.5,rounding_size=1",
                                    facecolor="#FEF2F2", edgecolor="#F87171", linewidth=1.2, linestyle='--')
     ax1.add_patch(b_risk)
-    ax1.text(50, 11, "HẠN CHẾ CỐ HỮU:", ha='center', fontsize=8, fontweight='bold', color="#991B1B")
-    ax1.text(50, 6.5, "• Dễ mất dữ liệu (SPOF) • Chi phí CapEx cao\n• Không mở rộng linh hoạt • Nghẽn băng thông upload", 
+    ax1.text(50, 11, "HẠN CHẾ CỐ HỮU HIỆN TẠI:", ha='center', fontsize=8, fontweight='bold', color="#991B1B")
+    ax1.text(50, 6.5, "• Dữ liệu cô lập trên 1 máy • Mất máy là mất toàn bộ tài liệu\n• Không đồng bộ sang Laptop • Không chia sẻ được cho bạn bè", 
              ha='center', fontsize=7.5, color="#7F1D1D")
 
-    arrow_p = dict(arrowstyle="<|-|>", color="#DC2626", lw=2, mutation_scale=12)
-    ax1.annotate('', xy=(50, 64), xytext=(50, 74), arrowprops=arrow_p)
-    ax1.text(51, 69, "HTTP Request + File Bytes (Nặng)", fontsize=7.5, color="#991B1B", va='center')
+    arrow_p = dict(arrowstyle="<|-|>", color="#D97706", lw=2, mutation_scale=12)
+    ax1.annotate('', xy=(50, 64), xytext=(50, 72), arrowprops=arrow_p)
+    ax1.annotate('', xy=(29, 38), xytext=(35, 46), arrowprops=dict(arrowstyle="<|-|>", color="#4338CA", lw=1.8, mutation_scale=10))
+    ax1.annotate('', xy=(71, 38), xytext=(65, 46), arrowprops=dict(arrowstyle="<|-|>", color="#DC2626", lw=1.8, mutation_scale=10))
 
-    ax1.annotate('', xy=(28.5, 38), xytext=(35, 48), arrowprops=arrow_p)
-    ax1.annotate('', xy=(71.5, 38), xytext=(65, 48), arrowprops=arrow_p)
-
-    # BÊN PHẢI: KIẾN TRÚC TÍCH HỢP CLOUD (MODERN CLOUD DMS)
+    # BÊN PHẢI: KIẾN TRÚC TÍCH HỢP CLOUD (MODERN CLOUD DMS CHO CASHEWDOC)
     ax2.set_xlim(0, 100)
     ax2.set_ylim(0, 100)
     ax2.axis('off')
     ax2.set_facecolor('#F8FAFC')
-    ax2.text(50, 96, "MÔ HÌNH TÍCH HỢP CLOUD (CLOUD-INTEGRATED)", ha='center', fontsize=11, fontweight='bold', color='#15803D')
-    ax2.text(50, 92, "(Đàn hồi vô hạn / Tách biệt dữ liệu / Độ bền 99.999999999%)", ha='center', fontsize=8.5, color='#166534', style='italic')
+    ax2.text(50, 96, "MÔ HÌNH SAU TÍCH HỢP CLOUD (CLOUD-ENHANCED CASHEWDOC)", ha='center', fontsize=10.5, fontweight='bold', color='#15803D')
+    ax2.text(50, 92, "(Bảo tồn Offline-First + Lưu trữ S3 Vô hạn + Đồng bộ Đám mây)", ha='center', fontsize=8.5, color='#166534', style='italic')
 
     # Frontend
-    b_fe2 = patches.FancyBboxPatch((10, 74), 80, 14, boxstyle="round,pad=0.8,rounding_size=2",
+    b_fe2 = patches.FancyBboxPatch((10, 72), 80, 16, boxstyle="round,pad=0.8,rounding_size=2",
                                   facecolor="#DBEAFE", edgecolor="#1D4ED8", linewidth=1.8)
     ax2.add_patch(b_fe2)
-    ax2.text(50, 83, "CLIENT (Flutter Mobile / Web App)", ha='center', va='center', fontsize=10, fontweight='bold', color="#1E3A8A")
-    ax2.text(50, 77.5, "Tải trực tiếp lên Cloud qua Pre-signed URL", ha='center', va='center', fontsize=8.5, color="#2563EB")
+    ax2.text(50, 83, "CLIENT (Flutter Mobile App + Web Portal)", ha='center', va='center', fontsize=10, fontweight='bold', color="#1E3A8A")
+    ax2.text(50, 77.5, "Offline Cache (SQLite) + CloudSyncService", ha='center', va='center', fontsize=8.5, color="#2563EB")
+    ax2.text(50, 74, "Direct Upload tệp lên Amazon S3 qua Pre-signed URL", ha='center', va='center', fontsize=7.5, color="#1D4ED8")
 
     # Cloud Backend
-    b_be2 = patches.FancyBboxPatch((10, 48), 38, 16, boxstyle="round,pad=0.8,rounding_size=2",
+    b_be2 = patches.FancyBboxPatch((10, 46), 38, 18, boxstyle="round,pad=0.8,rounding_size=2",
                                   facecolor="#DCFCE7", edgecolor="#16A34A", linewidth=1.8)
     ax2.add_patch(b_be2)
-    ax2.text(29, 58, "CLOUD BACKEND", ha='center', va='center', fontsize=9.5, fontweight='bold', color="#166534")
-    ax2.text(29, 52, "AWS ECS / Cloud Run\n(Chỉ xử lý Auth & Meta)", ha='center', va='center', fontsize=7.5, color="#15803D")
+    ax2.text(29, 58, "CLOUD BACKEND API", ha='center', va='center', fontsize=9.5, fontweight='bold', color="#166534")
+    ax2.text(29, 52, "AWS ECS Fargate / Lambda\n(Sync Engine, Pre-signed URL,\nXác thực JWT, Audit Trail)", ha='center', va='center', fontsize=7.5, color="#15803D")
 
     # Cloud Storage S3
-    b_s3 = patches.FancyBboxPatch((52, 48), 38, 16, boxstyle="round,pad=0.8,rounding_size=2",
+    b_s3 = patches.FancyBboxPatch((52, 46), 38, 18, boxstyle="round,pad=0.8,rounding_size=2",
                                  facecolor="#FEF3C7", edgecolor="#D97706", linewidth=2)
     ax2.add_patch(b_s3)
     ax2.text(71, 58, "OBJECT STORAGE (S3)", ha='center', va='center', fontsize=9.5, fontweight='bold', color="#92400E")
-    ax2.text(71, 52, "Amazon S3 / Azure Blob\n(Lưu tệp nhị phân - Vô hạn)", ha='center', va='center', fontsize=7.5, color="#B45309")
+    ax2.text(71, 52, "Amazon S3 Bucket (Private)\n(Lưu tệp .pdf, .docx - Vô hạn,\nMã hóa AES-256, S3 Lifecycle)", ha='center', va='center', fontsize=7.5, color="#B45309")
 
     # Database Cloud
-    b_db2 = patches.FancyBboxPatch((10, 22), 38, 16, boxstyle="round,pad=0.8,rounding_size=2",
+    b_db2 = patches.FancyBboxPatch((10, 20), 38, 18, boxstyle="round,pad=0.8,rounding_size=2",
                                   facecolor="#E0E7FF", edgecolor="#4338CA", linewidth=1.8)
     ax2.add_patch(b_db2)
-    ax2.text(29, 32, "CLOUD DATABASE (RDS)", ha='center', va='center', fontsize=9, fontweight='bold', color="#3730A3")
-    ax2.text(29, 26, "Amazon RDS PostgreSQL\n(Multi-AZ, Tự sao lưu)", ha='center', va='center', fontsize=7.5, color="#4338CA")
+    ax2.text(29, 31, "CLOUD DB (AMAZON RDS)", ha='center', va='center', fontsize=9, fontweight='bold', color="#3730A3")
+    ax2.text(29, 25, "PostgreSQL Cloud Database\n(Đồng bộ đa thiết bị theo UUID\nvà delete_logs của Cashew)", ha='center', va='center', fontsize=7.5, color="#4338CA")
 
     # CDN CloudFront
-    b_cdn = patches.FancyBboxPatch((52, 22), 38, 16, boxstyle="round,pad=0.8,rounding_size=2",
+    b_cdn = patches.FancyBboxPatch((52, 20), 38, 18, boxstyle="round,pad=0.8,rounding_size=2",
                                   facecolor="#F3E8FF", edgecolor="#7E22CE", linewidth=1.8)
     ax2.add_patch(b_cdn)
-    ax2.text(71, 32, "EDGE CDN (CloudFront)", ha='center', va='center', fontsize=9, fontweight='bold', color="#6B21A8")
-    ax2.text(71, 26, "Phân phối tài liệu toàn cầu\n(Độ trễ < 50ms, Cache)", ha='center', va='center', fontsize=7.5, color="#7E22CE")
+    ax2.text(71, 31, "EDGE CDN (CLOUDFRONT)", ha='center', va='center', fontsize=9, fontweight='bold', color="#6B21A8")
+    ax2.text(71, 25, "Mạng phân phối tệp toàn cầu\n(Cache bài giảng, độ trễ <50ms,\nSigned URLs có thời hạn)", ha='center', va='center', fontsize=7.5, color="#7E22CE")
 
     # Benefits box
     b_ben = patches.FancyBboxPatch((10, 3), 80, 13, boxstyle="round,pad=0.5,rounding_size=1",
                                   facecolor="#F0FDF4", edgecolor="#4ADE80", linewidth=1.2)
     ax2.add_patch(b_ben)
-    ax2.text(50, 11, "LỢI ÍCH VƯỢT TRỘI:", ha='center', fontsize=8, fontweight='bold', color="#166534")
-    ax2.text(50, 6.5, "• Độ bền 99.999999999% • Tách luồng upload trực tiếp\n• Mã hóa AES-256 • Chi phí tối ưu Pay-as-you-go", 
+    ax2.text(50, 11, "ƯU THẾ VƯỢT TRỘI SAU CHUYỂN ĐỔI:", ha='center', fontsize=8, fontweight='bold', color="#166534")
+    ax2.text(50, 6.5, "• Độ bền 99.999999999% • Đồng bộ đa thiết bị tức thì\n• Giải phóng 100% dung lượng máy • Chia sẻ link tài liệu an toàn", 
              ha='center', fontsize=7.5, color="#15803D")
 
     # Arrows for Cloud
-    ax2.annotate('', xy=(29, 64), xytext=(29, 74), arrowprops=dict(arrowstyle="-|>", color="#16A34A", lw=2, mutation_scale=12))
-    ax2.text(20, 69, "1. Xin Pre-signed URL", fontsize=7, color="#166534")
+    ax2.annotate('', xy=(29, 64), xytext=(29, 72), arrowprops=dict(arrowstyle="-|>", color="#16A34A", lw=2, mutation_scale=12))
+    ax2.text(20, 68, "1. Xin Pre-signed URL", fontsize=7, color="#166534")
 
-    ax2.annotate('', xy=(71, 64), xytext=(71, 74), arrowprops=dict(arrowstyle="-|>", color="#D97706", lw=2.5, mutation_scale=14))
-    ax2.text(72, 69, "2. Upload File trực tiếp (S3)", fontsize=7, color="#D97706", fontweight='bold')
+    ax2.annotate('', xy=(71, 64), xytext=(71, 72), arrowprops=dict(arrowstyle="-|>", color="#D97706", lw=2.5, mutation_scale=14))
+    ax2.text(72, 68, "2. Direct Upload (S3)", fontsize=7, color="#D97706", fontweight='bold')
 
-    ax2.annotate('', xy=(29, 38), xytext=(29, 48), arrowprops=dict(arrowstyle="<|-|>", color="#4338CA", lw=1.8, mutation_scale=10))
-    ax2.annotate('', xy=(71, 38), xytext=(71, 48), arrowprops=dict(arrowstyle="<|-|>", color="#7E22CE", lw=1.8, mutation_scale=10))
+    ax2.annotate('', xy=(29, 38), xytext=(29, 46), arrowprops=dict(arrowstyle="<|-|>", color="#4338CA", lw=1.8, mutation_scale=10))
+    ax2.annotate('', xy=(71, 38), xytext=(71, 46), arrowprops=dict(arrowstyle="<|-|>", color="#7E22CE", lw=1.8, mutation_scale=10))
 
     img_path = os.path.join(IMG_DIR, "traditional_vs_cloud_arch.png")
     plt.tight_layout()
@@ -157,7 +157,7 @@ def generate_traditional_vs_cloud_arch_diagram():
     return img_path
 
 def generate_cloud_data_flow_diagram():
-    fig, ax = plt.subplots(figsize=(11, 6.5), dpi=300)
+    fig, ax = plt.subplots(figsize=(11.5, 6.8), dpi=300)
     ax.set_xlim(0, 100)
     ax.set_ylim(0, 100)
     ax.axis('off')
@@ -166,44 +166,44 @@ def generate_cloud_data_flow_diagram():
 
     ax.text(50, 96, "LUỒNG DỮ LIỆU TẢI LÊN & TRUY XUẤT TÀI LIỆU TRÊN NỀN TẢNG CLOUD (PRE-SIGNED URL)",
             ha='center', fontsize=11, fontweight='bold', color='#1E3A8A')
-    ax.text(50, 92, "Cơ chế Direct-to-S3 Upload giải phóng hoàn toàn tắc nghẽn băng thông của Backend API",
+    ax.text(50, 92, "Áp dụng cho ứng dụng CashewDoc: Tải trực tiếp tệp PDF/Word lên S3 và đồng bộ Metadata vào RDS",
             ha='center', fontsize=8.5, color='#475569', style='italic')
 
     # Entities
-    b_client = patches.FancyBboxPatch((4, 35), 22, 45, boxstyle="round,pad=1,rounding_size=2",
+    b_client = patches.FancyBboxPatch((3, 35), 23, 46, boxstyle="round,pad=1,rounding_size=2",
                                      facecolor="#DBEAFE", edgecolor="#2563EB", linewidth=2)
     ax.add_patch(b_client)
-    ax.text(15, 65, "CLIENT\n(Mobile / Web)", ha='center', va='center', fontsize=10.5, fontweight='bold', color="#1E3A8A")
-    ax.text(15, 47, "• Chọn tệp đính kèm\n• Gửi metadata\n• Upload nhị phân\n• Nhận thông báo", 
-            ha='center', va='center', fontsize=8, color="#1E40AF")
+    ax.text(14.5, 66, "CLIENT\n(CashewDoc App)", ha='center', va='center', fontsize=10, fontweight='bold', color="#1E3A8A")
+    ax.text(14.5, 48, "• Chọn file PDF/Docx\n• Lưu local SQLite cache\n• Nhận Pre-signed URL\n• Tải nhị phân lên S3\n• Đồng bộ trạng thái", 
+            ha='center', va='center', fontsize=7.5, color="#1E40AF")
 
-    b_api = patches.FancyBboxPatch((38, 55), 24, 25, boxstyle="round,pad=1,rounding_size=2",
+    b_api = patches.FancyBboxPatch((38, 55), 24, 26, boxstyle="round,pad=1,rounding_size=2",
                                   facecolor="#DCFCE7", edgecolor="#16A34A", linewidth=2)
     ax.add_patch(b_api)
-    ax.text(50, 72, "BACKEND API\n(AWS ECS / Fargate)", ha='center', va='center', fontsize=10, fontweight='bold', color="#166534")
-    ax.text(50, 62, "• Xác thực JWT\n• Sinh Pre-signed URL\n• Lưu metadata vào RDS", 
-            ha='center', va='center', fontsize=8, color="#15803D")
+    ax.text(50, 72, "BACKEND API\n(AWS ECS Fargate)", ha='center', va='center', fontsize=10, fontweight='bold', color="#166534")
+    ax.text(50, 62, "• Xác thực JWT sinh viên\n• Sinh UUID v4 (UuidHelper)\n• Tạo Pre-signed PUT URL\n• Lưu metadata vào RDS", 
+            ha='center', va='center', fontsize=7.5, color="#15803D")
 
-    b_db = patches.FancyBboxPatch((38, 15), 24, 25, boxstyle="round,pad=1,rounding_size=2",
+    b_db = patches.FancyBboxPatch((38, 14), 24, 26, boxstyle="round,pad=1,rounding_size=2",
                                  facecolor="#E0E7FF", edgecolor="#4338CA", linewidth=2)
     ax.add_patch(b_db)
     ax.text(50, 31, "CLOUD DATABASE\n(Amazon RDS PostgreSQL)", ha='center', va='center', fontsize=9.5, fontweight='bold', color="#3730A3")
-    ax.text(50, 22, "• Lưu UUID, Title, Path S3\n• Audit logs, Status", 
-            ha='center', va='center', fontsize=8, color="#4338CA")
+    ax.text(50, 21, "• Bảng documents (UUID v4)\n• Bảng attachments (S3 URI)\n• Bảng delete_logs (Audit)", 
+            ha='center', va='center', fontsize=7.5, color="#4338CA")
 
-    b_s3 = patches.FancyBboxPatch((74, 55), 22, 25, boxstyle="round,pad=1,rounding_size=2",
+    b_s3 = patches.FancyBboxPatch((74, 55), 23, 26, boxstyle="round,pad=1,rounding_size=2",
                                  facecolor="#FEF3C7", edgecolor="#D97706", linewidth=2)
     ax.add_patch(b_s3)
-    ax.text(85, 72, "AMAZON S3\n(Object Storage)", ha='center', va='center', fontsize=10, fontweight='bold', color="#92400E")
-    ax.text(85, 62, "• Lưu trữ tệp vật lý\n• Mã hóa AES-256\n• Bucket Private 100%", 
-            ha='center', va='center', fontsize=8, color="#B45309")
+    ax.text(85.5, 72, "AMAZON S3\n(Object Storage)", ha='center', va='center', fontsize=10, fontweight='bold', color="#92400E")
+    ax.text(85.5, 62, "• Lưu tệp nhị phân (.pdf)\n• Khóa: /uploads/uuid.pdf\n• Mã hóa AES-256 (KMS)\n• S3 Lifecycle Glacier", 
+            ha='center', va='center', fontsize=7.5, color="#B45309")
 
-    b_cdn = patches.FancyBboxPatch((74, 15), 22, 25, boxstyle="round,pad=1,rounding_size=2",
+    b_cdn = patches.FancyBboxPatch((74, 14), 23, 26, boxstyle="round,pad=1,rounding_size=2",
                                   facecolor="#F3E8FF", edgecolor="#7E22CE", linewidth=2)
     ax.add_patch(b_cdn)
-    ax.text(85, 31, "CLOUDFRONT CDN\n(Edge Network)", ha='center', va='center', fontsize=9.5, fontweight='bold', color="#6B21A8")
-    ax.text(85, 22, "• Cache tài liệu tĩnh\n• Tải siêu tốc (<50ms)\n• Giảm tải cho S3", 
-            ha='center', va='center', fontsize=8, color="#7E22CE")
+    ax.text(85.5, 31, "CLOUDFRONT CDN\n(Edge Network)", ha='center', va='center', fontsize=9.5, fontweight='bold', color="#6B21A8")
+    ax.text(85.5, 21, "• Cache tài liệu bài giảng\n• Phân phối toàn cầu <50ms\n• Signed URLs có TTL", 
+            ha='center', va='center', fontsize=7.5, color="#7E22CE")
 
     # Arrows with steps
     arr_f = dict(arrowstyle="-|>", color="#1D4ED8", lw=2, mutation_scale=12)
@@ -213,31 +213,31 @@ def generate_cloud_data_flow_diagram():
 
     # Step 1: Client -> API (Request Upload)
     ax.annotate('', xy=(37, 72), xytext=(27, 72), arrowprops=arr_f)
-    ax.text(32, 74, "1. Request Upload (Tên, Size)", fontsize=7.5, color="#1E40AF", ha='center')
+    ax.text(32, 74.5, "1. Gửi Metadata & Xin Upload", fontsize=7.5, color="#1E40AF", ha='center')
 
     # Step 2: API -> Client (Return Pre-signed URL)
     ax.annotate('', xy=(27, 63), xytext=(37, 63), arrowprops=arr_g)
-    ax.text(32, 60, "2. Trả Pre-signed PUT URL", fontsize=7.5, color="#166534", ha='center')
+    ax.text(32, 60, "2. Trả Pre-signed PUT URL (5m)", fontsize=7.5, color="#166534", ha='center')
 
     # Step 3: Client -> S3 (Direct Upload)
     ax.annotate('', xy=(73, 76), xytext=(27, 76), arrowprops=arr_s)
-    ax.text(50, 79, "3. Upload File trực tiếp lên S3 (HTTP PUT - Băng thông tối đa)", fontsize=8, fontweight='bold', color="#D97706", ha='center')
+    ax.text(50, 79, "3. Upload trực tiếp file PDF/Word lên S3 (HTTP PUT - Băng thông tối đa)", fontsize=8, fontweight='bold', color="#D97706", ha='center')
 
     # Step 4: Client -> API (Confirm success)
     ax.annotate('', xy=(37, 57), xytext=(27, 57), arrowprops=arr_f)
-    ax.text(32, 53, "4. Báo hoàn tất upload", fontsize=7.5, color="#1E40AF", ha='center')
+    ax.text(32, 53, "4. Báo hoàn tất & ETag", fontsize=7.5, color="#1E40AF", ha='center')
 
     # Step 5: API -> RDS (Save Metadata)
     ax.annotate('', xy=(50, 41), xytext=(50, 54), arrowprops=arr_g)
     ax.text(51, 47, "5. Lưu Metadata (S3 Key, UUID)", fontsize=7.5, color="#166534")
 
     # Step 6: S3 -> CDN (Cache)
-    ax.annotate('', xy=(85, 41), xytext=(85, 54), arrowprops=arr_p)
-    ax.text(86, 47, "6. Đồng bộ CDN Edge", fontsize=7.5, color="#7E22CE")
+    ax.annotate('', xy=(85.5, 41), xytext=(85.5, 54), arrowprops=arr_p)
+    ax.text(86.5, 47, "6. Cache tại Edge PoP", fontsize=7.5, color="#7E22CE")
 
     # Step 7: Client <- CDN (Fast Download)
     ax.annotate('', xy=(27, 38), xytext=(73, 38), arrowprops=arr_p)
-    ax.text(50, 35, "7. Tải / Xem tài liệu tốc độ cao qua CDN CloudFront Signed URL", fontsize=8, fontweight='bold', color="#7E22CE", ha='center')
+    ax.text(50, 35, "7. Tải / Xem tài liệu bài giảng siêu tốc qua CloudFront Signed URL (<50ms)", fontsize=8, fontweight='bold', color="#7E22CE", ha='center')
 
     img_path = os.path.join(IMG_DIR, "cloud_data_flow_presigned.png")
     plt.tight_layout()
@@ -458,7 +458,7 @@ def add_code_block(doc, code_text):
     empty_p.paragraph_format.space_after = Pt(4)
 
 # ==============================================================================
-# PHẦN 3: XÂY DỰNG TÀI LIỆU DOCX "phan_tich_va_lap_phuong_an.docx"
+# PHẦN 3: XÂY DỰNG TÀI LIỆU DOCX DỰA TRÊN BÀI THỰC HÀNH 1
 # ==============================================================================
 
 def build_cloud_doc():
@@ -479,7 +479,7 @@ def build_cloud_doc():
         section.page_height = Inches(11.69)
 
     # --------------------------------------------------------------------------
-    # TRANG TIÊU ĐỀ / BÌA BÁO CÁO
+    # TRANG TIÊU ĐỀ / BÌA BÁO CÁO HỌC THUẬT PTIT
     # --------------------------------------------------------------------------
     p_inst = doc.add_paragraph()
     p_inst.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -491,7 +491,7 @@ def build_cloud_doc():
     r_inst.font.bold = True
     r_inst.font.color.rgb = RGBColor(30, 58, 138)
     
-    r_dept = p_inst.add_run("KHOA CÔNG NGHỆ THÔNG TIN - BỘ MÔN MẠNG & HỆ THỐNG PHÂN TÁN\n")
+    r_dept = p_inst.add_run("KHOA CÔNG NGHỆ THÔNG TIN - BỘ MÔN CÔNG NGHỆ PHẦN MỀM & HỆ THỐNG MẠNG\n")
     r_dept.font.name = "Calibri"
     r_dept.font.size = Pt(11)
     r_dept.font.bold = True
@@ -499,14 +499,14 @@ def build_cloud_doc():
 
     p_line = doc.add_paragraph()
     p_line.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    p_line.paragraph_format.space_after = Pt(28)
+    p_line.paragraph_format.space_after = Pt(26)
     r_line = p_line.add_run("─────────── ★ ───────────")
     r_line.font.color.rgb = RGBColor(148, 163, 184)
 
     p_title = doc.add_paragraph()
     p_title.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p_title.paragraph_format.space_after = Pt(12)
-    r_title = p_title.add_run("BÁO CÁO KỸ THUẬT\n")
+    r_title = p_title.add_run("BÁO CÁO PHÂN TÍCH VÀ LẬP PHƯƠNG ÁN\n")
     r_title.font.name = "Calibri"
     r_title.font.size = Pt(22)
     r_title.font.bold = True
@@ -514,30 +514,31 @@ def build_cloud_doc():
 
     p_sub = doc.add_paragraph()
     p_sub.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    p_sub.paragraph_format.space_after = Pt(26)
-    r_sub = p_sub.add_run("PHÂN TÍCH HỆ THỐNG VÀ LẬP PHƯƠNG ÁN CHUYỂN ĐỔI,\nTÍCH HỢP ĐIỆN TOÁN ĐÁM MÂY (CLOUD) CHO ỨNG DỤNG QUẢN LÝ TÀI LIỆU\n")
+    p_sub.paragraph_format.space_after = Pt(24)
+    r_sub = p_sub.add_run("CHUYỂN ĐỔI MÔ HÌNH LƯU TRỮ VÀ TÍCH HỢP ĐIỆN TOÁN ĐÁM MÂY (CLOUD)\nCHO ỨNG DỤNG BÀI THỰC HÀNH 1 - QUẢN LÝ TÀI LIỆU HỌC TẬP (CashewDoc)\n")
     r_sub.font.name = "Calibri"
     r_sub.font.size = Pt(13.5)
     r_sub.font.bold = True
     r_sub.font.color.rgb = RGBColor(2, 132, 199)
 
     add_callout(doc, 
-        "Báo cáo phân tích chuyên sâu các thành phần kiến trúc của hệ thống Quản lý tài liệu (DMS); nhận diện các điểm nghẽn nghiêm trọng khi vận hành trên hạ tầng truyền thống (On-Premise); đề xuất phương án chuyển đổi tích hợp Điện toán đám mây (Public Cloud - AWS/GCP); thiết kế sơ đồ kiến trúc luồng dữ liệu tối ưu Direct-to-S3 Upload qua Pre-signed URL; và đánh giá đa chiều về bảo mật, chi phí (Pay-as-you-go) cùng hiệu suất vận hành toàn cầu.",
+        "Báo cáo kỹ thuật phân tích trực tiếp trên mã nguồn và kiến trúc của Ứng dụng Quản lý Tài liệu Học tập (CashewDoc - Bài thực hành 1 môn Lập trình Thiết bị Di động); chỉ rõ các thành phần hiện có (Flutter Presentation, Clean Service Layer, SQLite FFI Database, Local File Sandbox); nhận diện các giới hạn cố hữu khi chỉ vận hành trên thiết bị cục bộ; đề xuất phương án tích hợp Điện toán Đám mây (Amazon S3, CloudFront CDN, RDS PostgreSQL, ECS Fargate); thiết kế sơ đồ luồng dữ liệu Direct-to-S3 Upload với Pre-signed URL; và đánh giá toàn diện tác động về an toàn bảo mật, chi phí tối ưu (Pay-as-you-go) cùng hiệu suất tải bài giảng quy mô trường học.",
         title="TÓM TẮT ĐỀ TÀI (EXECUTIVE SUMMARY)",
         border_color="0284C7", bg_color="F0F9FF"
     )
 
-    info_tbl = doc.add_table(rows=5, cols=2)
+    info_tbl = doc.add_table(rows=6, cols=2)
     info_tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
     set_table_borders(info_tbl, "E2E8F0")
-    col_w = [Inches(2.3), Inches(4.2)]
+    col_w = [Inches(2.4), Inches(4.2)]
     
     meta_data = [
-        ("Đề tài / Nhiệm vụ:", "Phân tích & Lập phương án tích hợp Cloud cho hệ thống Quản lý Tài liệu"),
-        ("Đối tượng nghiên cứu:", "Ứng dụng Quản lý Tài liệu Học tập (Document Management System - DMS)"),
+        ("Môn học:", "Lập trình Thiết bị Di động & Kiến trúc Hệ thống"),
+        ("Đối tượng nghiên cứu thực tế:", "Bài thực hành 1: Ứng dụng Quản lý Tài liệu Học tập (CashewDoc)"),
         ("Sinh viên thực hiện:", "Thu Hoài (Username GitHub: ThuHoai10)"),
-        ("Mô hình đám mây đề xuất:", "Public Cloud (Amazon Web Services - S3, CloudFront, RDS, ECS)"),
-        ("Tệp tài liệu lưu trữ:", "phan_tich_va_lap_phuong_an.docx"),
+        ("Mã nguồn dự án thực hành:", "https://github.com/ThuHoai10/TH1 (Branch main)"),
+        ("Mô hình đám mây đề xuất:", "Public Cloud (AWS S3 Object Storage + CloudFront + RDS)"),
+        ("Tệp tài liệu báo cáo:", "phan_tich_va_lap_phuong_an.docx"),
     ]
     for idx, (lbl, val) in enumerate(meta_data):
         row = info_tbl.rows[idx]
@@ -570,37 +571,39 @@ def build_cloud_doc():
     # --------------------------------------------------------------------------
     add_sec_h1(doc, "MỤC LỤC BÁO CÁO")
     toc_items = [
-        "1. LIỆT KÊ VÀ PHÂN TÍCH CÁC THÀNH PHẦN CỐT LÕI CỦA ỨNG DỤNG QUẢN LÝ TÀI LIỆU",
-        "    1.1. Tầng Giao diện Người dùng (Frontend / Client Layer)",
-        "    1.2. Tầng Xử lý Nghiệp vụ (Backend / Application Logic Layer)",
-        "    1.3. Tầng Cơ sở Dữ liệu (Database Layer - Structured Metadata)",
-        "    1.4. Tầng Lưu trữ Tệp nhị phân (File Storage Layer - Unstructured Data)",
-        "    1.5. Luồng dữ liệu và Ma trận tương tác giữa 4 thành phần",
-        "2. XÁC ĐỊNH CÁC ĐIỂM NGHẼN VÀ HẠN CHẾ KHI VẬN HÀNH TRÊN HẠ TẦNG TRUYỀN THỐNG",
-        "    2.1. Điểm nghẽn về khả năng mở rộng dung lượng (Storage Scalability Bottleneck)",
-        "    2.2. Điểm lỗi đơn lẻ (SPOF) và nguy cơ mất mát dữ liệu do thiên tai/sự cố",
-        "    2.3. Tắc nghẽn băng thông và quá tải tài nguyên máy chủ ứng dụng (Bandwidth Chokepoint)",
-        "    2.4. Rào cản truy cập từ xa, độ trễ địa lý và thiếu cơ chế CDN",
-        "    2.5. Hạn chế về bảo mật, kiểm toán và mã hóa tĩnh (Encryption at Rest)",
-        "    2.6. Gánh nặng chi phí đầu tư ban đầu (CapEx) và chi phí bảo trì vận hành",
-        "3. LỰA CHỌN MÔ HÌNH TRIỂN KHAI CLOUD VÀ CÁC DỊCH VỤ CỤ THỂ",
-        "    3.1. Đánh giá và lựa chọn Mô hình Triển khai Cloud (Public vs. Private vs. Hybrid)",
-        "    3.2. Lựa chọn Dịch vụ Lưu trữ Đối tượng (Object Storage): Amazon S3",
-        "    3.3. Lựa chọn Dịch vụ Mạng Phân phối Nội dung (CDN): Amazon CloudFront",
-        "    3.4. Lựa chọn Dịch vụ Cơ sở Dữ liệu Quản lý Đám mây: Amazon RDS PostgreSQL",
-        "    3.5. Lựa chọn Dịch vụ Tính toán Backend: Containerized AWS ECS Fargate",
-        "    3.6. Dịch vụ Quản lý Khóa và Bảo mật: AWS KMS & IAM",
-        "4. THIẾT KẾ SƠ ĐỒ KIẾN TRÚC TÍCH HỢP CLOUD VÀ MÔ TẢ LUỒNG DỮ LIỆU",
-        "    4.1. Sơ đồ Kiến trúc So sánh Tổng quan: Truyền thống vs. Tích hợp Cloud",
-        "    4.2. Sơ đồ Luồng Dữ liệu Chi tiết: Cơ chế Direct-to-S3 Upload qua Pre-signed URL",
-        "    4.3. Mô tả Quy trình Tải lên (Upload Workflow) 6 Bước",
-        "    4.4. Mô tả Quy trình Tải xuống và Xem trước (Download & Preview Workflow)",
+        "1. LIỆT KÊ VÀ PHÂN TÍCH CÁC THÀNH PHẦN CỐT LÕI CỦA ỨNG DỤNG BÀI THỰC HÀNH 1 (CashewDoc)",
+        "    1.1. Tầng Giao diện Người dùng (Frontend / Presentation Layer)",
+        "    1.2. Tầng Nghiệp vụ & Dịch vụ (Backend / Clean Application Service Layer)",
+        "    1.3. Tầng Cơ sở Dữ liệu (Database Layer - Local SQLite FFI)",
+        "    1.4. Tầng Lưu trữ Tệp nhị phân (File Storage Layer - Local Device Sandbox)",
+        "    1.5. Ma trận tương tác và luồng dữ liệu hiện tại trong bài thực hành",
+        "2. XÁC ĐỊNH CÁC ĐIỂM NGHẼN VÀ HẠN CHẾ CỦA HỆ THỐNG TRÊN HẠ TẦNG TRUYỀN THỐNG CỤC BỘ",
+        "    2.1. Hạn chế cô lập trên một thiết bị đơn lẻ (Single Device Island)",
+        "    2.2. Nguy cơ mất mát dữ liệu học tập vĩnh viễn (Single Point of Failure - SPOF)",
+        "    2.3. Cạn kiệt bộ nhớ trong của thiết bị di động (Local Storage Depletion)",
+        "    2.4. Rào cản chia sẻ tài liệu và cộng tác học tập từ xa (Lack of Collaboration)",
+        "    2.5. Hạn chế về an toàn thông tin và thiếu mã hóa dữ liệu tĩnh (At-Rest Encryption)",
+        "    2.6. Điểm nghẽn băng thông và chi phí nếu chuyển sang máy chủ tự dựng On-Premise",
+        "3. LỰA CHỌN MÔ HÌNH TRIỂN KHAI CLOUD VÀ CÁC DỊCH VỤ CỤ THỂ CHO BÀI THỰC HÀNH",
+        "    3.1. So sánh các mô hình Đám mây (Public vs. Private vs. Hybrid Cloud)",
+        "    3.2. Lựa chọn Mô hình Public Cloud kết hợp Kiến trúc Cloud-Enhanced Offline-First",
+        "    3.3. Dịch vụ Lưu trữ Đối tượng: Amazon S3 (Simple Storage Service)",
+        "    3.4. Dịch vụ Mạng Phân phối Nội dung: Amazon CloudFront CDN",
+        "    3.5. Dịch vụ Cơ sở Dữ liệu Đám mây: Amazon RDS PostgreSQL (Multi-AZ)",
+        "    3.6. Dịch vụ Tính toán Backend: Containerized AWS ECS Fargate",
+        "    3.7. Dịch vụ Bảo mật & Mã hóa Khóa: AWS KMS & IAM Roles",
+        "4. THIẾT KẾ SƠ ĐỒ KIẾN TRÚC TÍCH HỢP CLOUD VÀ LUỒNG DỮ LIỆU TỐI ƯU CHO CASHEWDOC",
+        "    4.1. Sơ đồ Kiến trúc So sánh Tổng quan: CashewDoc Hiện Tại vs. Tích Hợp Cloud",
+        "    4.2. Sơ đồ Luồng Dữ liệu: Direct-to-S3 Upload qua Pre-signed URL",
+        "    4.3. Mô tả Quy trình Tải lên Tệp Bài giảng (Direct Upload Workflow) 6 Bước",
+        "    4.4. Mô tả Quy trình Tải xuống & Xem trước Tài liệu (Preview via CDN)",
+        "    4.5. Thuật toán Đồng bộ 2 Chiều (Bidirectional Sync) dựa trên UUID v4 và DeleteLogs",
         "5. ĐÁNH GIÁ TÁC ĐỘNG VỀ BẢO MẬT, CHI PHÍ VÀ HIỆU SUẤT SAU KHI TÍCH HỢP",
         "    5.1. Đánh giá Tác động về An toàn & Bảo mật (Security & Compliance)",
-        "    5.2. Đánh giá Tác động về Chi phí Đầu tư & Vận hành (Cost Optimization & OpEx)",
+        "    5.2. Đánh giá Tác động về Chi phí Đầu tư & Vận hành (Cost Optimization cho Sinh viên)",
         "    5.3. Đánh giá Tác động về Hiệu suất & Độ sẵn sàng (Performance, Latency & High Availability)",
         "    5.4. Bảng Tổng hợp Đối chiếu Trước và Sau Chuyển đổi",
-        "KẾT LUẬN & KIẾN NGHỊ TRIỂN KHAI"
+        "KẾT LUẬN & ĐỀ XUẤT LỘ TRÌNH TRIỂN KHAI CHO DỰ ÁN"
     ]
     for item in toc_items:
         p = doc.add_paragraph()
@@ -620,53 +623,79 @@ def build_cloud_doc():
     # --------------------------------------------------------------------------
     # BƯỚC 1: LIỆT KÊ VÀ PHÂN TÍCH CÁC THÀNH PHẦN CỐT LÕI
     # --------------------------------------------------------------------------
-    add_sec_h1(doc, "1. LIỆT KÊ VÀ PHÂN TÍCH CÁC THÀNH PHẦN CỐT LÕI CỦA ỨNG DỤNG QUẢN LÝ TÀI LIỆU")
+    add_sec_h1(doc, "1. LIỆT KÊ VÀ PHÂN TÍCH CÁC THÀNH PHẦN CỐT LÕI CỦA ỨNG DỤNG BÀI THỰC HÀNH 1 (CashewDoc)")
     
     add_body_p(doc, 
-        "Hệ thống Quản lý Tài liệu (Document Management System - DMS) là một giải pháp phần mềm chuyên biệt dùng để thu nhận, theo dõi, lưu trữ và quản lý tài liệu điện tử. Khi vận hành trên hạ tầng truyền thống (hoặc mô hình On-Premise / Client-Centric như ứng dụng CashewDoc hiện tại), kiến trúc hệ thống được phân tách thành 4 thành phần trụ cột cốt lõi:"
+        "Dựa trên mã nguồn thực tế đã xây dựng trong Bài thực hành 1 (dự án CashewDoc), ứng dụng quản lý tài liệu học tập của sinh viên được tổ chức theo kiến trúc Clean Architecture 4 tầng nghiêm ngặt. Hệ thống hiện đang vận hành theo mô hình Client-Centric / Offline-First cục bộ với 4 thành phần trụ cột cốt lõi sau:"
     )
 
-    add_sec_h2(doc, "1.1. Tầng Giao diện Người dùng (Frontend / Client Layer)")
-    add_bullet_p(doc, "Bản chất & Công nghệ: ", "Lớp phần mềm tương tác trực tiếp với người dùng (Sinh viên, Giảng viên). Công nghệ sử dụng phổ biến là Flutter Mobile App (Android/iOS), React.js/Vue.js (Web Browser) hoặc Windows Native Desktop.")
-    add_bullet_p(doc, "Nhiệm vụ chính: ", 
-        "Hiển thị danh sách tài liệu theo môn học; cung cấp form nhập liệu (Tiêu đề, Mô tả, Môn học); tích hợp bộ chọn tệp đính kèm (File Picker) hỗ trợ đa định dạng (.pdf, .docx, .pptx, ảnh); cung cấp thanh tìm kiếm từ khóa, bộ lọc trạng thái học tập (Chưa học, Đang học, Hoàn thành); hiển thị Dashboard thống kê và tích hợp trình xem trước tài liệu (PDF/Image Viewer)."
+    add_sec_h2(doc, "1.1. Tầng Giao diện Người dùng (Frontend / Presentation Layer)")
+    add_bullet_p(doc, "Vị trí trong mã nguồn: ", "Thư mục 'lib/presentation/' với các màn hình chính: HomeScreen, DocumentFormScreen, DocumentDetailScreen, DashboardScreen, TrashScreen và các widget DocumentCard, StatusBadge.")
+    add_bullet_p(doc, "Trách nhiệm chính: ", 
+        "• Trực quan hóa dữ liệu học tập: Danh sách tài liệu phân loại theo màu sắc môn học, thẻ trạng thái tiến độ học tập (Chưa học, Đang học, Hoàn thành), biểu đồ thống kê cơ cấu tài liệu trên Dashboard.\n"
+        "• Thu nhận thông tin đầu vào: Biểu mẫu nhập Tiêu đề, Mô tả, Môn học, kèm bộ chọn tệp đính kèm (File Picker) cho phép sinh viên tải các tệp thực tế (.pdf, .docx, .pptx, .xlsx, .zip, hình ảnh).\n"
+        "• Tìm kiếm & Lọc thời gian thực: Thanh tìm kiếm từ khóa không phân biệt hoa thường và các chip lọc (Filter Chips) theo môn học và trạng thái tiến độ."
     )
-    add_bullet_p(doc, "Quản lý trạng thái (State Management): ", "Duy trì Controller/Provider để cập nhật giao diện theo thời gian thực khi có sự kiện thay đổi dữ liệu từ tầng dưới.")
-
-    add_sec_h2(doc, "1.2. Tầng Xử lý Nghiệp vụ (Backend / Application Logic Layer)")
-    add_bullet_p(doc, "Bản chất & Công nghệ: ", "Bộ não điều phối toàn bộ quy tắc nghiệp vụ (Business Rules Engine). Có thể là Service Layer nội bộ (như DocumentService, SubjectService) hoặc RESTful API Server xây dựng bằng Node.js (Express), Python (FastAPI/Django), Java (Spring Boot) chạy trên máy chủ On-Premise.")
-    add_bullet_p(doc, "Kiểm định dữ liệu (Validation): ", "Kiểm tra tính hợp lệ của tiêu đề (không rỗng), bắt buộc chọn môn học hợp lệ, kiểm tra phần mở rộng tệp nằm trong danh mục cho phép và kiểm soát dung lượng tệp tải lên.")
-    add_bullet_p(doc, "Máy trạng thái & Định danh phân tán: ", "Tự động sinh chuỗi định danh độc bản UUID v4 (128-bit) cho mọi tài liệu; điều khiển chuyển đổi trạng thái học tập theo chu trình khép kín.")
-    add_bullet_p(doc, "Xử lý tệp & An toàn dữ liệu: ", "Phân tích metadata của tệp đính kèm (kích thước KB/MB, MIME type, Checksum hash); điều phối quy trình Xóa mềm (Soft-Delete) bằng cách cập nhật cờ is_deleted = 1 và ghi vết vào bảng nhật ký xóa delete_logs.")
-
-    add_sec_h2(doc, "1.3. Tầng Cơ sở Dữ liệu (Database Layer - Structured Metadata)")
-    add_bullet_p(doc, "Bản chất & Công nghệ: ", "Lưu trữ dữ liệu có cấu trúc (Structured Data) và siêu dữ liệu (Metadata) mô tả tài liệu. Công nghệ sử dụng là SQLite Native FFI trên thiết bị hoặc hệ quản trị CSDL quan hệ RDBMS (PostgreSQL, MySQL, SQL Server) chạy trên máy chủ nội bộ.")
-    add_bullet_p(doc, "Các bảng dữ liệu cốt lõi: ", 
-        "• Bảng 'documents': Lưu UUID khóa chính, tiêu đề, mô tả, khóa ngoại môn học, trạng thái học tập, timestamps tạo/sửa, cờ xóa mềm.\n"
-        "• Bảng 'subjects': Lưu danh mục môn học, mã màu nhận diện, thông tin giảng viên.\n"
-        "• Bảng 'attachments': Lưu thông tin tệp đính kèm (attachment_pk, document_fk, file_name, file_path, file_size, file_type).\n"
-        "• Bảng 'delete_logs': Lưu vết kiểm toán lịch sử xóa (log_pk, entity_pk, entity_type, deleted_at)."
+    add_bullet_p(doc, "Quản lý trạng thái (State Management): ", 
+        "Sử dụng lớp 'DocumentController' (kế thừa ChangeNotifier). Controller tự động đăng ký lắng nghe (listen) luồng dữ liệu Reactive Stream từ tầng Service để render lại giao diện tức thì khi có sự kiện thay đổi dữ liệu."
     )
-    add_bullet_p(doc, "Đặc tính kỹ thuật: ", "Tuân thủ chặt chẽ tính toàn vẹn dữ liệu (ACID Transactions), liên kết khóa ngoại (Foreign Keys) và lập chỉ mục (Indexes) trên các trường tra cứu nhanh.")
 
-    add_sec_h2(doc, "1.4. Tầng Lưu trữ Tệp nhị phân (File Storage Layer - Unstructured Data)")
-    add_bullet_p(doc, "Bản chất & Cơ chế lưu trữ: ", "Lưu trữ nội dung nhị phân thực tế của các tệp tài liệu số kích thước lớn (PDF, Slide bài giảng, file mã nguồn ZIP).")
-    add_bullet_p(doc, "Hạ tầng truyền thống: ", "Sử dụng phân vùng ổ đĩa cục bộ của thiết bị (Local File System / App Storage) hoặc hệ thống lưu trữ mạng nội bộ (NAS - Network Attached Storage, SAN).")
-    add_bullet_p(doc, "Nguyên lý tách biệt: ", "Hệ thống tuyệt đối không lưu trực tiếp nội dung nhị phân dạng BLOB vào trong Database để tránh làm phình to CSDL. CSDL chỉ lưu chuỗi đường dẫn tệp (file_path) trỏ tới tệp vật lý trên ổ đĩa.")
+    # Chèn ảnh chụp giao diện thực tế của bài thực hành
+    scr_home = os.path.join(IMG_DIR, "android_emulator_screen.png")
+    if os.path.exists(scr_home):
+        doc.add_paragraph()
+        doc.add_picture(scr_home, width=Inches(3.8))
+        add_caption(doc, "Hình 1.1: Giao diện Màn hình Chính (HomeScreen) của Ứng dụng CashewDoc trên Máy ảo Android")
 
-    add_sec_h2(doc, "1.5. Ma Trận Tương Tác Giữa 4 Thành Phần Hệ Thống")
+    add_sec_h2(doc, "1.2. Tầng Nghiệp vụ & Dịch vụ (Backend / Clean Application Service Layer)")
+    add_bullet_p(doc, "Vị trí trong mã nguồn: ", "Thư mục 'lib/services/' bao gồm: DocumentService.dart, SubjectService.dart, SearchService.dart.")
+    add_bullet_p(doc, "Kiểm định nghiệp vụ (Validation): ", 
+        "Kiểm tra tính hợp lệ dữ liệu trước khi lưu: Bắt buộc tiêu đề tài liệu không được để trống (ném ra ArgumentError nếu rỗng), bắt buộc chọn môn học hợp lệ, phân loại tài liệu thuộc danh mục chuẩn (Bài giảng, Bài tập, Tham khảo, Đề thi)."
+    )
+    add_bullet_p(doc, "Định danh phân tán bằng UUID v4: ", 
+        "Sử dụng tiện ích UuidHelper (lib/core/utils/uuid_helper.dart) để tự động sinh khóa chính ngẫu nhiên 128-bit cho mọi tài liệu, môn học, tệp đính kèm và bản ghi nhật ký xóa. Điều này triệt tiêu xung đột ID và là tiền đề vững chắc để đồng bộ lên Cloud."
+    )
+    add_bullet_p(doc, "Máy trạng thái (State Machine) & Xóa mềm (Soft-Delete): ", 
+        "Điều khiển vòng lặp tiến độ 1-tap: Chưa học -> Đang học -> Đã hoàn thành -> Chưa học. Điều phối quy trình xóa mềm: Cập nhật cờ 'is_deleted = 1' và tự động ghi một bản ghi lịch sử vào bảng 'delete_logs' để phục vụ màn hình Thùng rác (TrashScreen) và Khôi phục (Restore)."
+    )
+
+    add_sec_h2(doc, "1.3. Tầng Cơ sở Dữ liệu (Database Layer - Local SQLite FFI)")
+    add_bullet_p(doc, "Vị trí trong mã nguồn: ", "Thư mục 'lib/data/datasources/local/app_database.dart' và các lớp truy vấn DAO trong 'lib/data/daos/'.")
+    add_bullet_p(doc, "Công nghệ CSDL: ", "Hệ quản trị CSDL quan hệ SQLite nhúng cục bộ (thư viện sqflite/sqflite_common_ffi), mở khóa ngoại (PRAGMA foreign_keys = ON) và quản lý Transaction an toàn.")
+    add_bullet_p(doc, "Cấu trúc các bảng dữ liệu cốt lõi: ", 
+        "• Bảng 'documents': Khóa chính document_pk (TEXT UUID), title, description, subject_fk, document_type, status, date_time_created, date_time_modified, is_deleted.\n"
+        "• Bảng 'subjects': Khóa chính subject_pk (TEXT UUID), subject_name, color_code, teacher_name, description.\n"
+        "• Bảng 'attachments': Khóa chính attachment_pk (TEXT UUID), document_fk (Khóa ngoại), file_name, file_path, file_size, file_type, created_at.\n"
+        "• Bảng 'delete_logs': Khóa chính log_pk (TEXT UUID), entity_pk, entity_type, date_time_deleted."
+    )
+
+    add_sec_h2(doc, "1.4. Tầng Lưu trữ Tệp nhị phân (File Storage Layer - Local Device Sandbox)")
+    add_bullet_p(doc, "Cơ chế lưu trữ hiện tại: ", 
+        "Khi sinh viên chọn một tệp tài liệu học tập (ví dụ file Slide bài giảng PDF hoặc đề thi DOCX), tệp được sao chép và lưu trữ trực tiếp vào thư mục phân vùng ứng dụng của điện thoại (Android App Sandbox / Internal Storage)."
+    )
+    add_bullet_p(doc, "Liên kết CSDL: ", 
+        "CSDL chỉ lưu đường dẫn tệp ('file_path' trỏ tới file trên bộ nhớ máy) cùng dung lượng tệp ('file_size' theo bytes). Nội dung nhị phân không được lưu vào SQLite để tránh làm phình to file database."
+    )
+
+    scr_detail = os.path.join(IMG_DIR, "detail_with_attachment.png")
+    if os.path.exists(scr_detail):
+        doc.add_paragraph()
+        doc.add_picture(scr_detail, width=Inches(3.8))
+        add_caption(doc, "Hình 1.2: Chi tiết Tài liệu kèm Tệp Đính kèm Vật lý được Quản lý Cục bộ trên Thiết bị")
+
+    add_sec_h2(doc, "1.5. Bảng Tổng Hợp 4 Thành Phần Hệ Thống CashewDoc Hiện Tại")
 
     comp_tbl = doc.add_table(rows=5, cols=4)
     comp_tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
     set_table_borders(comp_tbl, "CBD5E1")
     comp_w = [Inches(1.5), Inches(1.8), Inches(2.2), Inches(1.5)]
-    format_table_header(comp_tbl.rows[0], comp_w, ["Thành Phần", "Dạng Dữ Liệu", "Trách Nhiệm Chính", "Vị Trí Vận Hành"])
+    format_table_header(comp_tbl.rows[0], comp_w, ["Thành Phần", "Vị Trí Mã Nguồn", "Trách Nhiệm Chính", "Hạ Tầng Vận Hành Hiện Tại"])
     
     comp_data = [
-        ("Frontend (Client)", "UI State, User Input, View Widgets", "Thu nhận biểu mẫu, hiển thị tài liệu, xem trước tệp, quản lý trạng thái UI", "Client (Mobile App, Trình duyệt Web)"),
-        ("Backend (Logic)", "Business Logic, Request/Response", "Kiểm tra hợp lệ, sinh UUID v4, phân tích metadata, điều khiển xóa mềm", "Service nội bộ hoặc App Server On-Premise"),
-        ("Database (Metadata)", "Structured Data (Bảng quan hệ)", "Lưu trữ metadata, liên kết khóa ngoại, chỉ mục tìm kiếm, audit logs", "SQLite cục bộ hoặc RDBMS On-Premise"),
-        ("File Storage (Binary)", "Unstructured Data (Tệp nhị phân)", "Lưu trữ nội dung tệp vật lý kích thước lớn (.pdf, .docx, .zip)", "Ổ cứng cục bộ (Local Disk / NAS)"),
+        ("Frontend (Presentation)", "lib/presentation/ (Screens, Widgets)", "Hiển thị giao diện, bộ chọn tệp đính kèm, tìm kiếm, lọc, lắng nghe Streams", "Ứng dụng Flutter trên điện thoại sinh viên"),
+        ("Backend (Service Logic)", "lib/services/ (DocService, SearchService)", "Validation dữ liệu, sinh UUID v4, điều khiển máy trạng thái, xóa mềm ghi log", "Chạy trực tiếp trong tiến trình (In-Process) trên di động"),
+        ("Database (Metadata)", "lib/data/ (AppDatabase, DAOs, Models)", "Lưu trữ metadata bảng documents, subjects, attachments, delete_logs", "CSDL SQLite cục bộ trong bộ nhớ máy"),
+        ("File Storage (Binary)", "lib/data/daos/ (Attachment engine)", "Lưu trữ tệp nhị phân vật lý (.pdf, .docx, .pptx, .xlsx, .zip)", "Bộ nhớ ổ đĩa điện thoại (Android App Sandbox)"),
     ]
     for idx, r_vals in enumerate(comp_data):
         add_table_row(comp_tbl.rows[idx + 1], comp_w, r_vals, is_even=(idx % 2 == 1))
@@ -674,120 +703,127 @@ def build_cloud_doc():
     doc.add_paragraph()
 
     # --------------------------------------------------------------------------
-    # BƯỚC 2: ĐIỂM NGHẼN VÀ HẠN CHẾ CỦA HẠ TẦNG TRUYỀN THỐNG
+    # BƯỚC 2: ĐIỂM NGHẼN VÀ HẠN CHẾ CỦA HẠ TẦNG HIỆN TẠI
     # --------------------------------------------------------------------------
-    add_sec_h1(doc, "2. XÁC ĐỊNH CÁC ĐIỂM NGHẼN VÀ HẠN CHẾ KHI VẬN HÀNH TRÊN HẠ TẦNG TRUYỀN THỐNG")
+    add_sec_h1(doc, "2. XÁC ĐỊNH CÁC ĐIỂM NGHẼN VÀ HẠN CHẾ CỦA HỆ THỐNG TRÊN HẠ TẦNG TRUYỀN THỐNG CỤC BỘ")
     
     add_body_p(doc, 
-        "Khi hệ thống Quản lý tài liệu mở rộng quy mô (từ vài chục sinh viên lên hàng nghìn người dùng, từ vài trăm MB lên hàng Terabytes tài liệu), mô hình hạ tầng truyền thống On-Premise / Local Storage bộc lộ 6 điểm nghẽn nghiêm trọng sau:"
+        "Mặc dù kiến trúc cục bộ của CashewDoc mang lại tốc độ phản hồi 0ms và khả năng hoạt động tốt khi không có mạng (Offline-First), khi đưa vào sử dụng thực tế trong môi trường học tập, hệ thống bộc lộ 6 điểm nghẽn và hạn chế cố hữu sau:"
     )
 
-    add_sec_h2(doc, "2.1. Điểm nghẽn về khả năng mở rộng dung lượng (Storage Scalability Bottleneck)")
-    add_bullet_p(doc, "Hạn chế mở rộng phần cứng (Vertical Scaling): ", "Dung lượng lưu trữ bị giới hạn cứng bởi kích thước vật lý của ổ đĩa (HDD/SSD) hoặc thiết bị NAS. Khi số lượng tài liệu số, bài giảng slide, file PDF tăng cao, ổ cứng sẽ rơi vào trạng thái 'Disk Full'.")
-    add_bullet_p(doc, "Chi phí gián đoạn (Downtime): ", "Để nâng cấp dung lượng, quản trị viên buộc phải tắt máy chủ (Downtime), mua thêm ổ cứng, gắn vào khe RAID và mở rộng phân vùng. Quy trình này tốn nhiều ngày và làm gián đoạn việc học tập của sinh viên.")
+    add_sec_h2(doc, "2.1. Hạn chế cô lập trên một thiết bị đơn lẻ (Single Device Island)")
+    add_bullet_p(doc, "Thiếu đồng bộ đa thiết bị (No Multi-Device Sync): ", 
+        "Hiện tại, toàn bộ dữ liệu tài liệu và tệp đính kèm chỉ tồn tại trên chiếc điện thoại di động mà sinh viên đang dùng. Khi sinh viên muốn sử dụng Laptop để học bài hoặc máy tính bảng để đọc slide, không có cách nào truy cập vào kho tài liệu đã lưu trên điện thoại nếu không cắm cáp USB chép dữ liệu thủ công."
+    )
 
-    add_sec_h2(doc, "2.2. Điểm lỗi đơn lẻ (SPOF) và nguy cơ mất mát dữ liệu do sự cố")
-    add_bullet_p(doc, "Rủi ro Single Point of Failure (SPOF): ", "Mọi tệp tài liệu đều tập trung trên một ổ đĩa hoặc một cụm máy chủ cục bộ. Nếu xảy ra sự cố hỏng hóc phần cứng (bad sector, cháy nổ mạch điều khiển), toàn bộ kho tài liệu sẽ biến mất vĩnh viễn.")
-    add_bullet_p(doc, "Kém năng lực phục hồi thảm họa (Disaster Recovery): ", "Mô hình truyền thống hiếm khi có cơ chế sao lưu đa địa lý (Off-site Multi-region Backup). Khi xảy ra sự cố cháy nổ phòng server, ngập lụt, hoặc bị mã độc tống tiền (Ransomware) mã hóa ổ đĩa, mục tiêu thời gian phục hồi (RTO) và mục tiêu điểm phục hồi (RPO) đều không thể đảm bảo.")
+    add_sec_h2(doc, "2.2. Nguy cơ mất mát dữ liệu học tập vĩnh viễn (Single Point of Failure - SPOF)")
+    add_bullet_p(doc, "Rủi ro mất máy hoặc hỏng phần cứng: ", 
+        "Do không có cơ chế sao lưu tự động (Cloud Backup), nếu điện thoại của sinh viên bị rơi vỡ, hỏng bộ nhớ flash, bị mất cắp hoặc sinh viên vô tình gỡ cài đặt ứng dụng (Uninstall), toàn bộ ghi chú học tập, tài liệu ôn thi và tệp đính kèm tích lũy qua các kỳ học sẽ biến mất hoàn toàn mà không thể khôi phục."
+    )
 
-    add_sec_h2(doc, "2.3. Tắc nghẽn băng thông và quá tải máy chủ ứng dụng (Bandwidth Chokepoint)")
-    add_bullet_p(doc, "Nghẽn cổ chai luồng tệp (I/O Bottleneck): ", "Trong mô hình truyền thống, khi sinh viên tải lên hoặc tải xuống tệp bài giảng (dung lượng từ 20MB đến 100MB), toàn bộ luồng byte nhị phân phải đi xuyên qua máy chủ Backend (Client -> Backend -> File Storage).")
-    add_bullet_p(doc, "Cạn kiệt tài nguyên CPU/RAM: ", "Máy chủ Backend phải mở socket giữ kết nối, cấp phát bộ đệm RAM để đọc ghi dữ liệu tệp nhị phân. Khi hàng trăm sinh viên cùng nộp bài thi hoặc tải tài liệu cùng lúc, máy chủ Backend sẽ bị cạn kiệt CPU, nghẽn card mạng, dẫn đến sập toàn bộ hệ thống API tra cứu thông tin.")
+    add_sec_h2(doc, "2.3. Cạn kiệt bộ nhớ trong của thiết bị di động (Local Storage Depletion)")
+    add_bullet_p(doc, "Áp lực dung lượng đĩa di động: ", 
+        "Các tệp giáo trình PDF, slide bài giảng môn học (chứa nhiều hình ảnh chất lượng cao) hoặc video bài giảng thường có dung lượng từ 30MB đến 150MB mỗi tệp. Khi lưu trữ hàng chục môn học qua các năm, bộ nhớ trong của điện thoại sẽ nhanh chóng bị đầy ('Insufficient Storage'), gây ảnh hưởng tới hoạt động của toàn bộ hệ điều hành điện thoại."
+    )
 
-    add_sec_h2(doc, "2.4. Rào cản truy cập từ xa, độ trễ địa lý và thiếu cơ chế CDN")
-    add_bullet_p(doc, "Truy cập từ xa phức tạp & kém ổn định: ", "Máy chủ nội bộ yêu cầu cấu hình IP tĩnh, mở Port Forwarding, NAT hoặc bắt buộc người dùng kết nối qua mạng riêng ảo VPN chậm chạp.")
-    add_bullet_p(doc, "Độ trễ cao (High Latency): ", "Người dùng truy cập từ xa ngoài khuôn viên trường học hoặc ở các tỉnh thành khác phải chịu độ trễ mạng lớn do không có mạng lưới phân phối nội dung biên (Edge CDN).")
+    add_sec_h2(doc, "2.4. Rào cản chia sẻ tài liệu và cộng tác học tập từ xa (Lack of Collaboration)")
+    add_bullet_p(doc, "Không thể chia sẻ liên kết tài liệu: ", 
+        "Trong học tập theo nhóm (Teamwork), sinh viên không thể chia sẻ đường link tài liệu bài giảng cho bạn cùng lớp. Mọi thao tác chia sẻ đều phải thực hiện ngoài luồng qua các ứng dụng nhắn tin khác, gây phân mảnh và mất tính quản lý tập trung."
+    )
 
-    add_sec_h2(doc, "2.5. Hạn chế về bảo mật, kiểm toán và mã hóa tĩnh (Encryption at Rest)")
-    add_bullet_p(doc, "Dữ liệu không được mã hóa mặc định: ", "Tệp tài liệu lưu trên ổ đĩa On-Premise thường nằm dưới dạng tệp thô không được mã hóa. Bất kỳ ai có quyền truy cập vật lý vào ổ đĩa hoặc chiếm quyền root server đều có thể sao chép toàn bộ tài liệu mật.")
-    add_bullet_p(doc, "Thiếu cơ chế phân quyền hạt mịn: ", "Hệ thống truyền thống khó kiểm soát cấp quyền truy cập tạm thời (Temporary access), thiếu chữ ký URL bảo mật và không có nhật ký kiểm toán (Audit Trail) toàn diện ghi vết mọi lượt đọc/ghi.")
+    add_sec_h2(doc, "2.5. Hạn chế về an toàn thông tin và thiếu mã hóa dữ liệu tĩnh (At-Rest Encryption)")
+    add_bullet_p(doc, "Lưu trữ tệp thô không mã hóa: ", 
+        "Các tệp tài liệu trong bộ nhớ máy hiện đang được lưu dưới dạng file thông thường. Bất kỳ ứng dụng nào có quyền truy cập bộ nhớ ngoài hoặc khi thiết bị bị Root/Jailbreak đều có thể đọc trộm các tài liệu ôn tập và đề thi nhạy cảm."
+    )
 
-    add_sec_h2(doc, "2.6. Gánh nặng chi phí đầu tư ban đầu (CapEx) và chi phí bảo trì")
-    add_bullet_p(doc, "Chi phí vốn (CapEx) khổng lồ: ", "Tổ chức phải chi ngân sách lớn ngay từ đầu để mua sắm máy chủ vật lý, hệ thống lưu trữ SAN/NAS chuyên dụng, thiết bị mạng tường lửa, hệ thống điều hòa phòng server và nguồn điện dự phòng UPS.")
-    add_bullet_p(doc, "Lãng phí tài nguyên: ", "Hạ tầng phải được đầu tư dự phòng cho mức tải cao nhất (Peak Traffic), nhưng phần lớn thời gian trong năm lại hoạt động dưới mức công suất, gây lãng phí lớn về điện năng và bảo trì.")
+    add_sec_h2(doc, "2.6. Điểm nghẽn băng thông và chi phí nếu chuyển sang máy chủ tự dựng On-Premise")
+    add_bullet_p(doc, "Nghẽn cổ chai tải tệp (Bandwidth Chokepoint): ", 
+        "Nếu nhà trường giải quyết bài toán bằng cách dựng máy chủ On-Premise truyền thống trong phòng server trường học: Khi đến mùa thi, hàng nghìn sinh viên cùng truy cập tải slide và nộp bài tập lớn cùng lúc sẽ làm nghẽn đường truyền mạng của trường, cạn kiệt băng thông và làm sập máy chủ ứng dụng."
+    )
+    add_bullet_p(doc, "Gánh nặng chi phí phần cứng (CapEx): ", 
+        "Nhà trường phải đầu tư chi phí lớn ban đầu để mua máy chủ, ổ đĩa lưu trữ, hệ thống điều hòa và duy trì đội ngũ kỹ thuật trực 24/7."
+    )
 
     # --------------------------------------------------------------------------
     # BƯỚC 3: LỰA CHỌN MÔ HÌNH CLOUD VÀ DỊCH VỤ CỤ THỂ
     # --------------------------------------------------------------------------
-    add_sec_h1(doc, "3. LỰA CHỌN MÔ HÌNH TRIỂN KHAI CLOUD VÀ CÁC DỊCH VỤ CỤ THỂ")
+    add_sec_h1(doc, "3. LỰA CHỌN MÔ HÌNH TRIỂN KHAI CLOUD VÀ CÁC DỊCH VỤ CỤ THỂ CHO BÀI THỰC HÀNH")
 
-    add_sec_h2(doc, "3.1. Đánh giá và Lựa chọn Mô hình Triển khai Cloud Phù hợp")
+    add_sec_h2(doc, "3.1. So Sánh Các Mô Hình Đám Mây (Public vs. Private vs. Hybrid Cloud)")
     add_body_p(doc, 
-        "Để khắc phục triệt để các hạn chế của mô hình truyền thống, chúng tôi tiến hành phân tích và so sánh 3 mô hình triển khai điện toán đám mây chính:"
+        "Để giải quyết triệt để 6 hạn chế nêu trên cho ứng dụng CashewDoc, chúng tôi tiến hành đánh giá 3 mô hình triển khai điện toán đám mây:"
     )
 
     cloud_tbl = doc.add_table(rows=4, cols=4)
     cloud_tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
     set_table_borders(cloud_tbl, "CBD5E1")
     c_w = [Inches(1.4), Inches(1.8), Inches(2.0), Inches(1.8)]
-    format_table_header(cloud_tbl.rows[0], c_w, ["Mô Hình", "Đặc Điểm Kiến Trúc", "Ưu Điểm Nổi Bật", "Đánh Giá Áp Dụng"])
+    format_table_header(cloud_tbl.rows[0], c_w, ["Mô Hình Đám Mây", "Đặc Điểm Vận Hành", "Ưu Điểm Cốt Lõi", "Đánh Giá Áp Dụng Cho CashewDoc"])
     
     cloud_model_data = [
-        ("Public Cloud (AWS / GCP / Azure)", "Hạ tầng thuộc sở hữu của nhà cung cấp Cloud hàng đầu thế giới, chia sẻ tài nguyên an toàn đa khách hàng", "Mở rộng đàn hồi vô hạn, thanh toán theo dung lượng thực tế (Pay-as-you-go), độ bền 99.999999999%, không cần bảo trì phần cứng", "TỐI ƯU NHẤT: Rất phù hợp cho ứng dụng quản lý tài liệu học tập, tiết kiệm tối đa ngân sách và vận hành"),
-        ("Private Cloud (On-Premises Cloud)", "Hạ tầng đám mây ảo hóa riêng biệt đặt tại trung tâm dữ liệu của tổ chức (OpenStack, VMware)", "Kiểm soát vật lý 100%, bảo mật nội bộ khép kín", "KHÔNG KHẢ THI: Chi phí đầu tư thiết bị và nhân sự vận hành quá đắt đỏ, không giải quyết được bài toán CapEx"),
-        ("Hybrid Cloud (Lai ghép)", "Kết hợp giữa máy chủ nội bộ (lưu metadata mật) và Public Cloud (lưu trữ tệp nhị phân lớn)", "Tận dụng phần cứng cũ, tăng cường bảo mật dữ liệu nhạy cảm", "PHÙ HỢP GIAI ĐOẠN CHUYỂN TIẾP: Thích hợp nếu tổ chức đã có sẵn hạ tầng máy chủ CSDL nội bộ"),
+        ("Public Cloud (AWS / GCP / Azure)", "Hạ tầng thuộc sở hữu của nhà cung cấp Cloud hàng đầu thế giới, chia sẻ tài nguyên an toàn đa khách hàng", "Khả năng co giãn vô hạn, thanh toán theo dung lượng thực tế (Pay-as-you-go), độ bền 11 số 9, không tốn chi phí bảo trì phần cứng", "LỰA CHỌN TỐI ƯU NHẤT: Rất phù hợp với quy mô sinh viên, tiết kiệm chi phí và triển khai nhanh chóng"),
+        ("Private Cloud (On-Premises Cloud)", "Hạ tầng ảo hóa riêng biệt đặt tại trung tâm dữ liệu của trường học (OpenStack, VMware vSphere)", "Kiểm soát vật lý tuyệt đối trong mạng nội bộ", "KHÔNG KHẢ THI: Chi phí đầu tư máy chủ ban đầu quá đắt đỏ, tốn nhân lực quản trị và khó mở rộng quy mô linh hoạt"),
+        ("Hybrid Cloud (Lai ghép)", "Kết hợp giữa máy chủ nội bộ trường học và Public Cloud (lưu trữ tệp lớn trên S3)", "Tận dụng hạ tầng cũ sẵn có của trường", "PHÙ HỢP CHO GIAI ĐOẠN QUÁ ĐỘ: Thích hợp nếu nhà trường đã có sẵn hệ thống máy chủ CSDL sinh viên nội bộ"),
     ]
     for idx, r_vals in enumerate(cloud_model_data):
         add_table_row(cloud_tbl.rows[idx + 1], c_w, r_vals, is_even=(idx % 2 == 1))
 
     doc.add_paragraph()
+
+    add_sec_h2(doc, "3.2. Lựa Chọn Mô Hình: Public Cloud Kết Hợp Kiến Trúc Cloud-Enhanced Offline-First")
     add_callout(doc, 
-        "QUYẾT ĐỊNH LỰA CHỌN: Lựa chọn mô hình PUBLIC CLOUD trên nền tảng Amazon Web Services (AWS) (kết hợp hỗ trợ Google Cloud Platform - GCP). Mô hình này mang lại tỷ suất lợi ích / chi phí tối đa, loại bỏ hoàn toàn chi phí bảo trì phần cứng, và sở hữu hệ sinh thái dịch vụ lưu trữ đối tượng dẫn đầu thị trường.",
-        title="LỰA CHỌN MÔ HÌNH TRIỂN KHAI TỐI ƯU",
+        "QUYẾT ĐỊNH KIẾN TRÚC: Chúng tôi đề xuất mô hình 'Cloud-Enhanced Offline-First' trên nền tảng Public Cloud (Amazon Web Services - AWS).\n"
+        "• Trên thiết bị di động: Vẫn duy trì 100% CSDL SQLite FFI cục bộ để đảm bảo tốc độ phản hồi 0ms và khả năng xem tài liệu khi không có mạng (bảo tồn tinh hoa Cashew).\n"
+        "• Trên đám mây: Tích hợp Amazon S3 để lưu trữ tệp nhị phân vĩnh viễn, kết hợp Amazon RDS PostgreSQL để đồng bộ metadata đa thiết bị thông qua chuỗi UUID v4 và bảng delete_logs đã có sẵn!",
+        title="CHIẾN LƯỢC KIẾN TRÚC ĐỘT PHÁ CHO BÀI THỰC HÀNH",
         border_color="16A34A", bg_color="F0FDF4"
     )
 
-    add_sec_h2(doc, "3.2. Lựa chọn Dịch vụ Lưu trữ Đối tượng (Object Storage): Amazon S3")
-    add_bullet_p(doc, "Dịch vụ: ", "Amazon Simple Storage Service (Amazon S3) (hoặc Google Cloud Storage - GCS).")
-    add_bullet_p(doc, "Lý do lựa chọn: ", 
-        "• Độ bền dữ liệu tuyệt đối (Durability): Đạt 99.999999999% (11 số 9) nhờ cơ chế tự động nhân bản dữ liệu qua tối thiểu 3 Trung tâm Dữ liệu độc lập (Availability Zones - AZs).\n"
-        "• Khả năng mở rộng vô hạn: Tự động co giãn theo dung lượng thực tế từ vài Megabytes đến hàng Petabytes mà không cần cấu hình trước.\n"
-        "• Tính năng Pre-signed URLs: Cho phép sinh đường dẫn có chữ ký số và thời hạn hết hạn tự động (TTL) để Client tải tệp trực tiếp lên S3 mà không cần đi qua máy chủ Backend.\n"
-        "• Tối ưu chi phí bằng S3 Lifecycle Policies: Tự động chuyển tài liệu cũ ít truy cập sang S3 Standard-Infrequent Access và S3 Glacier Flexible Deep Archive giúp tiết kiệm tới 95% chi phí."
+    add_sec_h2(doc, "3.3. Dịch Vụ Lưu Trữ Đối Tượng: Amazon S3 (Simple Storage Service)")
+    add_bullet_p(doc, "Lý do lựa chọn cho CashewDoc: ", 
+        "• Độ bền dữ liệu 99.999999999% (11 số 9): Dữ liệu bài giảng được nhân bản tự động qua tối thiểu 3 Trung tâm Dữ liệu độc lập (AZs). Sinh viên không bao giờ lo mất tài liệu.\n"
+        "• Cơ chế Pre-signed URLs: Cho phép ứng dụng di động tải trực tiếp tệp PDF/Word lên S3 mà không cần đi qua máy chủ trung gian, giải phóng 100% băng thông server.\n"
+        "• Tối ưu chi phí bằng S3 Lifecycle Policies: Tự động chuyển các tài liệu của kỳ học trước sang lớp lưu trữ S3 Glacier Deep Archive (giá chỉ 0.00099 USD/GB/tháng) giúp tiết kiệm đến 95% chi phí."
     )
 
-    add_sec_h2(doc, "3.3. Lựa chọn Dịch vụ Mạng Phân phối Nội dung (CDN): Amazon CloudFront")
-    add_bullet_p(doc, "Dịch vụ: ", "Amazon CloudFront (hoặc Cloudflare CDN).")
+    add_sec_h2(doc, "3.4. Dịch Vụ Mạng Phân Phối Nội Dung: Amazon CloudFront CDN")
     add_bullet_p(doc, "Lý do lựa chọn: ", 
-        "Mạng lưới hơn 600 điểm PoP (Points of Presence) biên trên toàn cầu. Các tệp tài liệu tĩnh phổ biến được lưu tạm (Cache) ngay tại điểm gần người dùng nhất, giảm độ trễ tải tệp xuống dưới 50ms, đồng thời giảm 80% lưu lượng truy cập trực tiếp vào S3 Bucket."
+        "Mạng lưới hơn 600 điểm PoP biên toàn cầu lưu tạm (Cache) các tài liệu bài giảng phổ biến. Khi sinh viên tải slide bài giảng, file được truyền từ PoP gần nhất với độ trễ dưới 50ms, tốc độ tải gấp 3 - 5 lần so với tải từ máy chủ thông thường."
     )
 
-    add_sec_h2(doc, "3.4. Lựa chọn Dịch vụ Cơ sở Dữ liệu Đám mây: Amazon RDS for PostgreSQL")
-    add_bullet_p(doc, "Dịch vụ: ", "Amazon Relational Database Service (Amazon RDS PostgreSQL).")
+    add_sec_h2(doc, "3.5. Dịch Vụ Cơ Sở Dữ Liệu Đám Mây: Amazon RDS for PostgreSQL")
     add_bullet_p(doc, "Lý do lựa chọn: ", 
-        "Hệ quản trị CSDL quan hệ chuẩn mực, được AWS tự động quản lý sao lưu định kỳ hàng ngày (Automated Backups), nhân bản dự phòng nóng (Multi-AZ Standby Replica) đảm bảo RPO < 5 phút và tự động mở rộng dung lượng đĩa (Storage Auto-scaling)."
+        "Cung cấp CSDL quan hệ đám mây chuẩn ACID, tự động sao lưu hàng ngày, tự động mở rộng dung lượng đĩa (Storage Auto-scaling), đóng vai trò là 'Trung tâm Đồng bộ' tiếp nhận các bản ghi UUID v4 và nhật ký delete_logs từ các thiết bị di động gửi lên."
     )
 
-    add_sec_h2(doc, "3.5. Lựa chọn Dịch vụ Tính toán Backend: Containerized AWS ECS Fargate")
-    add_bullet_p(doc, "Dịch vụ: ", "AWS Elastic Container Service (ECS) với Serverless Launch Type (AWS Fargate).")
+    add_sec_h2(doc, "3.6. Dịch Vụ Tính Toán Backend: Containerized AWS ECS Fargate")
     add_bullet_p(doc, "Lý do lựa chọn: ", 
-        "Vận hành API Backend dưới dạng Docker Container mà không cần quản lý máy chủ ảo EC2. Hệ thống tự động co giãn số lượng Container (Auto-scaling) theo lưu lượng truy cập thực tế của sinh viên, chỉ tính phí khi có Container đang chạy."
+        "Chạy API đồng bộ dưới dạng Docker Container hoàn toàn Serverless. Hệ thống tự động co giãn (Auto-scaling) từ 1 Container lên hàng chục Container trong các tuần thi cao điểm và tự động thu nhỏ lại khi ít sinh viên sử dụng, giúp tối ưu hóa chi phí."
     )
 
-    add_sec_h2(doc, "3.6. Dịch vụ Bảo mật & Quản lý Khóa: AWS KMS & IAM")
-    add_bullet_p(doc, "Dịch vụ: ", "AWS Key Management Service (KMS) & AWS Identity and Access Management (IAM).")
+    add_sec_h2(doc, "3.7. Dịch Vụ Bảo Mật & Quản Lý Khóa: AWS KMS & IAM Roles")
     add_bullet_p(doc, "Lý do lựa chọn: ", 
-        "Cung cấp khả năng mã hóa dữ liệu tĩnh chuẩn AES-256 (SSE-KMS) với khóa mã hóa được quản lý chặt chẽ. Áp dụng chính sách đặc quyền tối thiểu (Least Privilege Access) cho từng dịch vụ và người dùng."
+        "Cung cấp khả năng mã hóa dữ liệu tĩnh chuẩn AES-256 (SSE-KMS) cho toàn bộ tệp trên S3. Bucket S3 được cấu hình Private tuyệt đối ('Block All Public Access'), chỉ cho phép truy cập qua Pre-signed URL có chữ ký số ngắn hạn."
     )
 
     # --------------------------------------------------------------------------
     # BƯỚC 4: THIẾT KẾ KIẾN TRÚC VÀ LUỒNG DỮ LIỆU
     # --------------------------------------------------------------------------
-    add_sec_h1(doc, "4. THIẾT KẾ SƠ ĐỒ KIẾN TRÚC TÍCH HỢP CLOUD VÀ MÔ TẢ LUỒNG DỮ LIỆU")
+    add_sec_h1(doc, "4. THIẾT KẾ SƠ ĐỒ KIẾN TRÚC TÍCH HỢP CLOUD VÀ LUỒNG DỮ LIỆU TỐI ƯU CHO CASHEWDOC")
 
-    add_sec_h2(doc, "4.1. Sơ đồ Kiến trúc So sánh Tổng quan: Truyền thống vs. Tích hợp Cloud")
+    add_sec_h2(doc, "4.1. Sơ đồ Kiến trúc So sánh Tổng quan: CashewDoc Hiện Tại vs. Tích Hợp Cloud")
     add_body_p(doc, 
-        "Hình 4.1 dưới đây thể hiện sự khác biệt mang tính bước ngoặt giữa mô hình truyền thống (bên trái) và mô hình hiện đại sau khi tích hợp toàn diện Điện toán Đám mây (bên phải):"
+        "Hình 4.1 so sánh trực quan sự chuyển dịch kiến trúc từ mô hình cục bộ một máy sang mô hình đám mây đàn hồi toàn cầu:"
     )
 
     if os.path.exists(arch_img):
         doc.add_paragraph()
         doc.add_picture(arch_img, width=Inches(6.4))
-        add_caption(doc, "Hình 4.1: So sánh Kiến trúc Hệ thống DMS Truyền thống (Trái) và Kiến trúc Tích hợp Cloud (Phải)")
+        add_caption(doc, "Hình 4.1: So sánh Kiến trúc CashewDoc Cục bộ Hiện tại (Trái) và Kiến trúc Tích hợp Cloud (Phải)")
 
     add_sec_h2(doc, "4.2. Sơ đồ Luồng Dữ liệu Chi tiết: Direct-to-S3 Upload qua Pre-signed URL")
     add_body_p(doc, 
-        "Để loại bỏ hoàn toàn điểm nghẽn băng thông của máy chủ Backend, chúng tôi áp dụng mẫu thiết kế kiến trúc chuẩn mực thế giới: **Mô hình Tải lên Trực tiếp qua Pre-signed URL (Direct-to-S3 Upload)**:"
+        "Hình 4.2 mô tả chi tiết đường đi của luồng dữ liệu khi sinh viên thêm tài liệu kèm file đính kèm lớn và khi tải bài giảng về máy:"
     )
 
     if os.path.exists(flow_img):
@@ -795,19 +831,26 @@ def build_cloud_doc():
         doc.add_picture(flow_img, width=Inches(6.4))
         add_caption(doc, "Hình 4.2: Luồng Dữ liệu Tải lên Trực tiếp qua Pre-signed URL và Tải xuống Tốc độ cao qua CDN CloudFront")
 
-    add_sec_h2(doc, "4.3. Mô tả Chi Tiết Quy Trình Tải Lên (Upload Workflow)")
-    add_body_p(doc, "Quy trình tải một tài liệu học tập mới kèm tệp đính kèm lớn (PDF/Word/Slide) diễn ra qua 6 bước khép kín:")
-    add_bullet_p(doc, "Bước 1 (Client -> Backend): ", "Người dùng chọn tệp tin từ thiết bị. Ứng dụng Client gửi một yêu cầu JSON nhẹ chứa metadata (tên tệp: 'BaiGiang_Chuong1.pdf', kích thước: 45MB, MIME: 'application/pdf') tới Backend API.")
-    add_bullet_p(doc, "Bước 2 (Backend Authentication & Key Generation): ", "Backend API xác thực phiên đăng nhập (JWT), kiểm tra hạn ngạch của sinh viên, sinh chuỗi UUID v4 độc bản cho tài liệu và gọi AWS SDK để tạo một 'Pre-signed PUT URL' (với thời hạn hiệu lực 5 phút, gắn kèm khóa đối tượng 'uploads/2026/uuid_baigiang.pdf').")
-    add_bullet_p(doc, "Bước 3 (Backend -> Client): ", "Backend trả mã Pre-signed URL về cho ứng dụng Client qua phản hồi HTTP 200.")
-    add_bullet_p(doc, "Bước 4 (Client -> Amazon S3 - Direct Upload): ", "Ứng dụng Client sử dụng giao thức HTTP PUT truyền trực tiếp toàn bộ luồng byte nhị phân 45MB lên thẳng máy chủ Amazon S3. Dữ liệu KHÔNG đi qua Backend, giải phóng 100% băng thông của server!")
-    add_bullet_p(doc, "Bước 5 (Client -> Backend Confirmation): ", "Sau khi S3 trả về mã HTTP 200 OK (xác nhận đã ghi file an toàn vào S3), Client gửi một request thông báo hoàn tất kèm ETag và UUID về cho Backend.")
-    add_bullet_p(doc, "Bước 6 (Backend -> RDS Database): ", "Backend API ghi bản ghi metadata tài liệu (kèm đường dẫn S3 Key) vào Amazon RDS PostgreSQL bằng 1 Transaction an toàn và gửi thông báo thành công cho Client.")
+    add_sec_h2(doc, "4.3. Mô Tả Chi Tiết Quy Trình Tải Lên Tệp Bài Giảng (Direct Upload Workflow) 6 Bước")
+    add_body_p(doc, "Khi sinh viên bấm 'Lưu tài liệu' kèm file Slide PDF (45MB) trên ứng dụng CashewDoc:")
+    add_bullet_p(doc, "Bước 1 (Gửi Metadata nhẹ): ", "Ứng dụng Flutter gửi request JSON nhẹ chứa thông tin: Tiêu đề ('Bài giảng Kiến trúc Máy tính'), dung lượng (45MB), định dạng ('application/pdf') tới Backend API.")
+    add_bullet_p(doc, "Bước 2 (Xác thực & Sinh Pre-signed URL): ", "Backend API xác thực JWT, sử dụng tiện ích UuidHelper để sinh chuỗi UUID v4 độc bản, gọi AWS S3 SDK tạo một Pre-signed PUT URL có thời hạn hiệu lực 5 phút và trả về cho ứng dụng di động.")
+    add_bullet_p(doc, "Bước 3 (Upload trực tiếp lên Amazon S3): ", "Ứng dụng di động thực hiện lệnh HTTP PUT truyền luồng byte nhị phân 45MB thẳng lên Amazon S3 Bucket. File hoàn toàn KHÔNG đi qua Backend API, giải phóng 100% băng thông của server!")
+    add_bullet_p(doc, "Bước 4 (Thông báo hoàn tất): ", "Khi S3 nhận file an toàn và trả về mã HTTP 200 OK kèm mã ETag, ứng dụng gửi thông báo xác nhận thành công về cho Backend API.")
+    add_bullet_p(doc, "Bước 5 (Ghi CSDL Cloud): ", "Backend API ghi bản ghi metadata tài liệu (kèm đường dẫn S3 Key) vào Amazon RDS PostgreSQL.")
+    add_bullet_p(doc, "Bước 6 (Cập nhật Local SQLite): ", "Ứng dụng CashewDoc ghi bản ghi vào CSDL SQLite cục bộ trên điện thoại và kích hoạt Reactive Stream để màn hình HomeScreen hiển thị tài liệu mới ngay tức khắc.")
 
-    add_sec_h2(doc, "4.4. Mô tả Chi Tiết Quy Trình Tải Xuống và Xem Trước (Download & Preview Workflow)")
-    add_bullet_p(doc, "Bước 1: ", "Sinh viên bấm vào một tài liệu để xem chi tiết hoặc tải về. Client gửi yêu cầu kèm Document ID tới Backend API.")
-    add_bullet_p(doc, "Bước 2: ", "Backend kiểm tra quyền truy cập của sinh viên. Nếu hợp lệ, Backend sinh một CloudFront Signed URL (hoặc S3 Pre-signed GET URL) có thời hạn ngắn (ví dụ 15 phút).")
-    add_bullet_p(doc, "Bước 3: ", "Client sử dụng đường dẫn có chữ ký số để tải nội dung tệp trực tiếp từ CloudFront CDN Edge Server gần nhất với độ trễ siêu thấp (<50ms) và băng thông không giới hạn.")
+    add_sec_h2(doc, "4.4. Quy Trình Tải Xuống & Xem Trước Tài Liệu (Preview via CDN)")
+    add_bullet_p(doc, "Bước 1: ", "Sinh viên bấm vào tài liệu để xem trước file PDF. Ứng dụng gửi yêu cầu Document ID tới Backend API.")
+    add_bullet_p(doc, "Bước 2: ", "Backend kiểm tra quyền truy cập của sinh viên và sinh một CloudFront Signed URL có thời hạn ngắn (15 phút).")
+    add_bullet_p(doc, "Bước 3: ", "Ứng dụng di động tải file trực tiếp từ CloudFront Edge Server gần nhất với độ trễ siêu thấp (<50ms) và mở trực tiếp trên trình đọc PDF tích hợp của CashewDoc.")
+
+    add_sec_h2(doc, "4.5. Thuật Toán Đồng Bộ 2 Chiều (Bidirectional Sync) Tận Dụng Sẵn Thiết Kế Của Bài Thực Hành")
+    add_body_p(doc, 
+        "Một ưu điểm vượt trội là mã nguồn Bài thực hành 1 đã được chuẩn bị sẵn 2 yếu tố then chốt để phục vụ đồng bộ đám mây:"
+    )
+    add_bullet_p(doc, "1. Khóa chính UUID v4: ", "Cho phép sinh viên thêm tài liệu trên điện thoại khi mất mạng mà không bao giờ bị trùng khóa chính với tài liệu thêm trên laptop khi kết nối lại mạng.")
+    add_bullet_p(doc, "2. Bảng 'delete_logs': ", "Khi sinh viên xóa tài liệu trên điện thoại ở chế độ offline, bản ghi xóa được lưu vết vào bảng delete_logs. Khi có kết nối mạng, CloudSyncService chỉ cần gửi danh sách delete_logs lên server để xóa đồng bộ trên Cloud Database, giải quyết triệt để bài toán đồng bộ xóa đa thiết bị (Delete Propagation)!")
 
     # --------------------------------------------------------------------------
     # BƯỚC 5: ĐÁNH GIÁ TÁC ĐỘNG VỀ BẢO MẬT, CHI PHÍ VÀ HIỆU SUẤT
@@ -816,52 +859,48 @@ def build_cloud_doc():
 
     add_sec_h2(doc, "5.1. Đánh giá Tác động về An toàn & Bảo mật (Security & Compliance)")
     add_bullet_p(doc, "Mã hóa toàn diện đa tầng: ", 
-        "• Mã hóa luồng truyền (In-Transit): Bắt buộc giao thức HTTPS/TLS 1.3 cho toàn bộ giao tiếp giữa Client, Backend và S3.\n"
-        "• Mã hóa tại chỗ (At-Rest): Toàn bộ tệp trên S3 Bucket được tự động mã hóa bằng chuẩn quân đội AES-256 thông qua dịch vụ AWS KMS."
+        "• Mã hóa luồng truyền (In-Transit): 100% kết nối qua giao thức HTTPS/TLS 1.3.\n"
+        "• Mã hóa tĩnh (At-Rest): Toàn bộ tệp trên Amazon S3 được tự động mã hóa chuẩn AES-256 thông qua AWS KMS."
     )
-    add_bullet_p(doc, "Chính sách Private Bucket 100%: ", 
-        "Kích hoạt cờ 'Block Public Access' tuyệt đối trên S3 Bucket. Không ai có thể truy cập tệp trực tiếp qua Internet nếu không có Pre-signed URL hợp lệ được cấp bởi Backend."
+    add_bullet_p(doc, "Kiểm soát truy cập cấp hạt mịn (Fine-grained Access Control): ", 
+        "S3 Bucket hoàn toàn Private. Không ai có thể tải tệp nếu không có Pre-signed URL được cấp bởi Backend API kèm chữ ký HMAC-SHA256 và thời hạn hết hạn ngắn (5-15 phút)."
     )
-    add_bullet_p(doc, "Kiểm toán & Truy vết (Audit Logging): ", 
-        "Mọi hành động đọc, ghi, xóa trên S3 và RDS đều được ghi vết tự động vào AWS CloudTrail, đáp ứng các tiêu chuẩn an toàn thông tin quốc tế (ISO 27001, GDPR)."
+    add_bullet_p(doc, "Kiểm toán lịch sử (Audit Trail): ", 
+        "Dịch vụ AWS CloudTrail tự động ghi lại toàn bộ nhật ký truy cập (ai đọc/sửa/xóa tài liệu vào lúc nào), đáp ứng đầy đủ tiêu chuẩn bảo mật dữ liệu giáo dục."
     )
 
-    add_sec_h2(doc, "5.2. Đánh giá Tác động về Chi phí Đầu tư & Vận hành (Cost Optimization & OpEx)")
-    add_bullet_p(doc, "Chuyển dịch hoàn toàn từ CapEx sang OpEx: ", 
-        "Loại bỏ chi phí đầu tư thiết bị phần cứng ban đầu trị giá hàng trăm triệu đồng. Thay vào đó, chi phí vận hành biến đổi linh hoạt theo mô hình 'Dùng bao nhiêu, trả bấy nhiêu' (Pay-as-you-go)."
+    add_sec_h2(doc, "5.2. Đánh giá Tác động về Chi phí Đầu tư & Vận hành (Cost Optimization cho Sinh viên)")
+    add_bullet_p(doc, "Chuyển từ CapEx sang OpEx: ", 
+        "Không cần mua sắm máy chủ hàng trăm triệu đồng ban đầu. Chi phí thanh toán theo mô hình Pay-as-you-go (Dùng bao nhiêu, trả bấy nhiêu)."
     )
-    add_bullet_p(doc, "Đơn giá lưu trữ siêu tiết kiệm: ", 
-        "Amazon S3 Standard chỉ có giá ~0.023 USD / GB / tháng. Với 100 GB tài liệu học tập của sinh viên, chi phí lưu trữ chỉ vỏn vẹn ~2.3 USD / tháng (tương đương ~58.000 VNĐ)!"
-    )
-    add_bullet_p(doc, "Tiết kiệm 90% chi phí dài hạn bằng Lifecycle Policies: ", 
-        "Các tài liệu học tập của các học kỳ trước (sau 90 ngày) tự động chuyển sang S3 Glacier Deep Archive với mức giá siêu rẻ: 0.00099 USD / GB / tháng (chỉ 2.500 VNĐ cho 100 GB mỗi tháng)."
-    )
-    add_bullet_p(doc, "Tối ưu chi phí máy chủ Backend: ", 
-        "Nhờ mô hình Direct Upload, máy chủ Backend không phải xử lý tải file nặng, cho phép sử dụng các gói Container cấu hình nhỏ (0.5 vCPU, 1GB RAM), giảm tới 75% chi phí thuê máy chủ."
+    add_bullet_p(doc, "Bài toán chi phí thực tế cho quy mô sinh viên học viện PTIT: ", 
+        "• Giả sử hệ thống phục vụ 1.000 sinh viên, lưu trữ 500 GB tài liệu học tập.\n"
+        "• Chi phí lưu trữ S3 Standard: 500 GB * 0.023 USD/GB = 11.5 USD / tháng (~290.000 VNĐ / tháng).\n"
+        "• Chi phí lưu trữ dài hạn với S3 Glacier Deep Archive (cho tài liệu các kỳ cũ): 500 GB * 0.00099 USD = 0.5 USD / tháng (~12.500 VNĐ / tháng)!\n"
+        "• Nhờ Direct Upload, server Backend chỉ cần thuê gói ECS Fargate nhỏ (0.5 vCPU, 1GB RAM) tốn ~15 USD/tháng. Tổng chi phí toàn hệ thống chưa đến 30 USD/tháng (~750.000 VNĐ), tiết kiệm hơn 85% so với duy trì máy chủ riêng!"
     )
 
     add_sec_h2(doc, "5.3. Đánh giá Tác động về Hiệu suất & Độ sẵn sàng (Performance & High Availability)")
-    add_bullet_p(doc, "Độ bền dữ liệu bất hoại: ", "Đạt 99.999999999% (11 số 9), triệt tiêu hoàn toàn nỗi lo mất mát dữ liệu do hỏng ổ đĩa.")
-    add_bullet_p(doc, "Độ sẵn sàng (High Availability): ", "Cam kết SLA 99.99% thời gian hoạt động liên tục (Uptime), phục hồi thảm họa tự động đa vùng chỉ trong vài phút.")
-    add_bullet_p(doc, "Khả năng chịu tải đột biến (High Throughput): ", "Amazon S3 hỗ trợ tối thiểu 3.500 requests PUT và 5.500 requests GET mỗi giây trên mỗi prefix, cho phép hàng chục nghìn sinh viên nộp bài cùng lúc mà không xảy ra hiện tượng nghẽn mạng.")
-    add_bullet_p(doc, "Tốc độ truy xuất toàn cầu: ", "Nhờ CDN CloudFront, tốc độ tải tài liệu nhanh hơn gấp 3 - 5 lần so với việc truy cập vào máy chủ On-Premise truyền thống.")
+    add_bullet_p(doc, "Độ bền dữ liệu bất hoại: ", "99.999999999% (11 số 9), triệt tiêu hoàn toàn rủi ro mất tài liệu của sinh viên.")
+    add_bullet_p(doc, "Khả năng chịu tải cực hạn trong mùa thi: ", "Amazon S3 hỗ trợ tối thiểu 3.500 requests PUT và 5.500 requests GET mỗi giây trên mỗi prefix. Hàng nghìn sinh viên có thể đồng thời nộp bài tập lớn mà không xảy ra hiện tượng nghẽn mạng hay sập hệ thống.")
+    add_bullet_p(doc, "Tốc độ tải tài liệu vượt trội: ", "Nhờ CDN CloudFront, độ trễ tải bài giảng giảm từ hàng giây xuống dưới 50ms.")
 
-    add_sec_h2(doc, "5.4. Bảng Tổng Hợp Đối Chiếu Trước và Sau Khi Tích Hợp Cloud")
+    add_sec_h2(doc, "5.4. Bảng Tổng Hợp Đối Chiếu Trước và Sau Khi Chuyển Đổi Lên Cloud")
 
     eval_tbl = doc.add_table(rows=8, cols=4)
     eval_tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
     set_table_borders(eval_tbl, "CBD5E1")
     e_w = [Inches(1.4), Inches(1.8), Inches(2.0), Inches(1.8)]
-    format_table_header(eval_tbl.rows[0], e_w, ["Tiêu Chí Đánh Giá", "Mô Hình Truyền Thống", "Mô Hình Tích Hợp Cloud", "Mức Độ Cải Thiện"])
+    format_table_header(eval_tbl.rows[0], e_w, ["Tiêu Chí Đánh Giá", "Mô Hình Hiện Tại (CashewDoc Cục Bộ)", "Mô Hình Tích Hợp Cloud Đề Xuất", "Mức Độ Cải Thiện"])
     
     eval_data = [
-        ("1. Dung lượng lưu trữ", "Giới hạn bởi dung lượng ổ cứng vật lý (Disk Full)", "Mở rộng đàn hồi không giới hạn (Auto-scaling)", "Đột phá: Không lo thiếu đĩa"),
-        ("2. Độ bền & An toàn", "Dễ mất dữ liệu khi hỏng ổ đĩa, thiên tai (SPOF)", "Độ bền 99.999999999% (11 số 9), sao lưu đa vùng", "Tuyệt đối: Triệt tiêu rủi ro"),
-        ("3. Tải máy chủ Backend", "Nghẽn băng thông, cạn RAM do file đi qua server", "Giải phóng 100% nhờ Direct Upload qua Pre-signed URL", "Vượt trội: Server chỉ xử lý JSON"),
-        ("4. Tốc độ tải tệp (Latency)", "Chậm, phụ thuộc đường truyền mạng nội bộ", "Siêu tốc (<50ms) nhờ mạng lưới CDN toàn cầu", "Nhanh hơn 300% - 500%"),
-        ("5. Cơ chế Bảo mật", "Tệp lưu thô, khó kiểm soát cấp quyền tạm thời", "Mã hóa AES-256 tĩnh, Pre-signed URL có thời hạn (TTL)", "Chuẩn doanh nghiệp quốc tế"),
-        ("6. Chi phí Đầu tư", "CapEx lớn (Mua sắm phần cứng, phòng server)", "OpEx linh hoạt (Chỉ trả tiền theo mức sử dụng thực tế)", "Tiết kiệm 70% - 85% chi phí"),
-        ("7. Phục hồi sự cố (DR)", "Thủ công, mất nhiều ngày, nguy cơ mất dữ liệu cao", "Tự động hoàn toàn (RTO < 15 phút, RPO < 5 phút)", "Đảm bảo tính liên tục 24/7"),
+        ("1. Phạm vi truy cập", "Bị cô lập trên 1 điện thoại di động của sinh viên", "Đa thiết bị: Điện thoại, Laptop, Máy tính bảng, Web", "Đột phá: Truy cập mọi lúc mọi nơi"),
+        ("2. Độ an toàn dữ liệu", "Dễ mất trắng khi hỏng/mất máy hoặc gỡ cài đặt", "Độ bền 99.999999999%, sao lưu tự động đa vùng", "Tuyệt đối: Triệt tiêu rủi ro mất mát"),
+        ("3. Dung lượng lưu trữ", "Giới hạn bởi bộ nhớ trong của điện thoại", "Mở rộng đàn hồi không giới hạn trên Amazon S3", "Giải phóng 100% bộ nhớ điện thoại"),
+        ("4. Tải máy chủ Backend", "Nghẽn nặng nếu tải file qua server thông thường", "Giải phóng 100% nhờ Direct Upload qua Pre-signed URL", "Server chỉ xử lý JSON siêu nhẹ"),
+        ("5. Tốc độ tải tệp", "Phụ thuộc kết nối mạng gia đình / nội bộ", "Siêu tốc (<50ms) nhờ mạng lưới CDN CloudFront", "Nhanh hơn 300% - 500%"),
+        ("6. An toàn thông tin", "Lưu tệp thô trong bộ nhớ máy, không mã hóa", "Mã hóa AES-256 tĩnh (KMS), Pre-signed URL có TTL", "Chuẩn bảo mật doanh nghiệp quốc tế"),
+        ("7. Khả năng chia sẻ", "Không hỗ trợ chia sẻ link cho bạn bè trong lớp", "Chia sẻ liên kết tài liệu bảo mật có thời hạn", "Tối ưu hóa học tập nhóm (Teamwork)"),
     ]
     for idx, r_vals in enumerate(eval_data):
         add_table_row(eval_tbl.rows[idx + 1], e_w, r_vals, is_even=(idx % 2 == 1))
@@ -869,21 +908,34 @@ def build_cloud_doc():
     doc.add_paragraph()
 
     # --------------------------------------------------------------------------
-    # KẾT LUẬN & KIẾN NGHỊ
+    # KẾT LUẬN & ĐỀ XUẤT LỘ TRÌNH
     # --------------------------------------------------------------------------
-    add_sec_h1(doc, "KẾT LUẬN & KIẾN NGHỊ TRIỂN KHAI")
+    add_sec_h1(doc, "KẾT LUẬN & ĐỀ XUẤT LỘ TRÌNH TRIỂN KHAI CHO DỰ ÁN")
     
     add_body_p(doc, 
-        "Việc chuyển đổi và tích hợp Điện toán Đám mây cho ứng dụng Quản lý Tài liệu (DMS) không chỉ là một nâng cấp kỹ thuật đơn thuần mà là một bước chuyển dịch chiến lược mang lại giá trị bền vững cho tổ chức giáo dục / doanh nghiệp:"
+        "Việc phân tích và lập phương án tích hợp Điện toán Đám mây dựa trên chính ứng dụng Bài thực hành 1 (CashewDoc) đã chứng minh tính khả thi và giá trị thực tiễn to lớn:"
     )
-    add_bullet_p(doc, "1. Giải quyết triệt để các điểm nghẽn cố hữu: ", "Mô hình Direct-to-S3 Upload qua Pre-signed URL loại bỏ hoàn toàn sự tắc nghẽn băng thông tại tầng Backend, trong khi dịch vụ Amazon S3 giải phóng áp lực về giới hạn dung lượng lưu trữ vật lý.")
-    add_bullet_p(doc, "2. Nâng tầm bảo mật và trải nghiệm người dùng: ", "Dữ liệu được bảo vệ bằng mã hóa chuẩn AES-256 kết hợp mạng phân phối nội dung CDN CloudFront mang lại trải nghiệm tải tài liệu mượt mà, sẵn sàng 24/7 từ bất kỳ đâu.")
-    add_bullet_p(doc, "3. Tối ưu hóa hiệu quả tài chính: ", "Mô hình Pay-as-you-go kết hợp S3 Lifecycle Policies giúp tiết kiệm ngân sách khổng lồ so với việc duy trì trung tâm dữ liệu On-Premise truyền thống.")
-    add_bullet_p(doc, "4. Lộ trình triển khai kiến nghị: ", "Tổ chức nên áp dụng lộ trình chuyển đổi 3 giai đoạn: (1) Di chuyển tệp tĩnh sang Amazon S3 với Pre-signed URL; (2) Chuyển đổi CSDL sang Amazon RDS PostgreSQL; (3) Tích hợp các dịch vụ thông minh AI/ML trên Cloud như Amazon Textract để tự động trích xuất nội dung văn bản từ tệp scan phục vụ tìm kiếm thông minh.")
+    add_bullet_p(doc, "1. Kế thừa trọn vẹn nền tảng sẵn có: ", 
+        "Dự án không cần phải đập đi xây lại mà tận dụng chính xác các thiết kế Clean Architecture, khóa chính UUID v4 và cơ chế ghi nhật ký delete_logs đã được xây dựng công phu trong Bài thực hành 1 để làm cầu nối đồng bộ lên Đám mây."
+    )
+    add_bullet_p(doc, "2. Đạt được trải nghiệm tốt nhất cho người học: ", 
+        "Sinh viên vừa được tận hưởng tốc độ phản hồi 0ms của ứng dụng Offline-First khi ghi chép trên lớp học, vừa được bảo vệ an toàn dữ liệu trên Amazon S3 và có thể mở lại bài học trên máy tính ở nhà."
+    )
+    add_bullet_p(doc, "3. Lộ trình triển khai 3 giai đoạn kiến nghị: ", 
+        "• Giai đoạn 1 (Lưu trữ tệp đám mây): Tích hợp AWS S3 SDK vào CashewDoc, thay đổi luồng lưu AttachmentModel từ file cục bộ sang Pre-signed URL trên S3.\n"
+        "• Giai đoạn 2 (Đồng bộ Metadata): Triển khai API đồng bộ trên AWS ECS Fargate, kết nối SQLite cục bộ với Amazon RDS PostgreSQL.\n"
+        "• Giai đoạn 3 (Tính năng thông minh): Tích hợp trí tuệ nhân tạo Amazon Textract để tự động trích xuất chữ viết tay và nội dung từ các ảnh chụp bảng bài giảng, nâng tầm CashewDoc thành hệ thống học tập thông minh toàn diện."
+    )
 
-    doc.save(DOCX_OUT)
-    print(f"-> Tạo thành công tài liệu Word hoàn chỉnh: {DOCX_OUT}")
-    return DOCX_OUT
+    try:
+        doc.save(DOCX_OUT)
+        print(f"-> Tạo thành công tài liệu Word hoàn chỉnh: {DOCX_OUT}")
+        return DOCX_OUT
+    except PermissionError:
+        backup_out = os.path.join(WORKSPACE_DIR, "phan_tich_va_lap_phuong_an_CashewDoc.docx")
+        doc.save(backup_out)
+        print(f"-> File {DOCX_OUT} đang mở trong WPS/Word. Đã lưu bản mới nhất vào: {backup_out}")
+        return backup_out
 
 if __name__ == "__main__":
     build_cloud_doc()
