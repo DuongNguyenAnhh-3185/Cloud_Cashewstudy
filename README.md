@@ -140,7 +140,7 @@ Tệp tin đóng gói được tạo tại:
 ---
 
 ## 👥 Tác Giả & Bản Quyền
-- **Sinh viên thực hiện**: Thu Hoài
+- **Sinh viên thực hiện**: Nhóm 15
 - **Môn học**: Lập trình Thiết bị Di động (Mobile Programming)
 - **Học viện**: Học viện Công nghệ Bưu chính Viễn thông (PTIT)
 - **Kiến trúc tham chiếu**: Cashew Open Source Architecture
