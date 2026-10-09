@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+import 'package:sqflite_common_ffi_web/sqflite_ffi_web.dart';
 import '../../../core/constants/app_constants.dart';
 
 /// Quản lý kết nối và khởi tạo cơ sở dữ liệu SQLite
@@ -45,19 +46,28 @@ class AppDatabase {
   }
 
   Future<Database> _initDatabase() async {
+    if (kIsWeb) {
+      databaseFactory = databaseFactoryFfiWeb;
+      return await databaseFactoryFfiWeb.openDatabase(
+        'cashew_study.db',
+        options: OpenDatabaseOptions(
+          version: 1,
+          onCreate: _onCreate,
+          onConfigure: (db) async {
+            await db.execute('PRAGMA foreign_keys = ON');
+          },
+        ),
+      );
+    }
+
     // Khởi tạo FFI driver cho Windows / Linux nếu cần
-    if (!kIsWeb && (Platform.isWindows || Platform.isLinux)) {
+    if (Platform.isWindows || Platform.isLinux) {
       sqfliteFfiInit();
       databaseFactory = databaseFactoryFfi;
     }
 
-    String dbPath;
-    if (kIsWeb) {
-      dbPath = 'cashew_study.db';
-    } else {
-      final docDir = await getApplicationDocumentsDirectory();
-      dbPath = p.join(docDir.path, 'cashew_study.db');
-    }
+    final docDir = await getApplicationDocumentsDirectory();
+    final dbPath = p.join(docDir.path, 'cashew_study.db');
 
     return await openDatabase(
       dbPath,

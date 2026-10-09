@@ -9,6 +9,7 @@ import 'document_detail_screen.dart';
 import 'document_form_screen.dart';
 import 'subject_list_screen.dart';
 import 'trash_screen.dart';
+import 'firebase_cloud_screen.dart';
 
 /// Màn hình chính của ứng dụng Quản lý Tài liệu Học tập (CashewDoc)
 class HomeScreen extends StatefulWidget {
@@ -129,6 +130,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       context,
                       MaterialPageRoute(builder: (_) => const SubjectListScreen()),
                     );
+                  } else if (val == 'cloud') {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const FirebaseCloudScreen()),
+                    );
                   } else if (val == 'trash') {
                     await Navigator.push(
                       context,
@@ -178,6 +184,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         Icon(Icons.auto_stories, size: 20, color: Colors.teal),
                         SizedBox(width: 10),
                         Text('Nạp lại dữ liệu mẫu'),
+                      ],
+                    ),
+                  ),
+                  const PopupMenuItem(
+                    value: 'cloud',
+                    child: Row(
+                      children: [
+                        Icon(Icons.cloud_sync, size: 20, color: Color(0xFF1E88E5)),
+                        SizedBox(width: 10),
+                        Text('Đám mây Firebase'),
                       ],
                     ),
                   ),
