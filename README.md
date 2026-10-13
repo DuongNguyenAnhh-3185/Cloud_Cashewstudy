@@ -1,5 +1,7 @@
 # 📚 CashewDoc - Ứng Dụng Quản Lý Tài Liệu Học Tập (Kiến Trúc Cashew)
 
+> Hướng dẫn triển khai Firebase Auth/Storage, Supabase và RLS: [CLOUD_SETUP.md](CLOUD_SETUP.md)
+
 [![Flutter](https://img.shields.io/badge/Flutter-3.x-blue.svg)](https://flutter.dev)
 [![Architecture](https://img.shields.io/badge/Architecture-Cashew%20Clean%20Architecture-brightgreen.svg)](#kiến-trúc-cashew)
 [![Tests](https://img.shields.io/badge/Tests-33%2F33%20Passed-success.svg)](#kiểm-thử-chất-lượng)

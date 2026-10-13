@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+
 import 'firebase_options.dart';
 import 'core/constants/app_constants.dart';
 import 'presentation/screens/home_screen.dart';
 import 'service_locator.dart';
+import 'services/supabase_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,6 +18,9 @@ void main() async {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
+    // Supabase nhận Firebase ID token cho mọi truy vấn PostgREST/RLS.
+    // Nếu chưa truyền dart-define, ứng dụng local vẫn khởi động bình thường.
+    await SupabaseService.initialize();
   } catch (e) {
     // ignore: avoid_print
     print("Firebase init notice: $e");
